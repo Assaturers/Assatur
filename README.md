@@ -1,5 +1,7 @@
 This repository contains the tools and patches used to mod Magicka.
 
+## Contributing
+
 **THIS GUIDE DETAILS THE STEPS THAT WILL BE REQUIRED TO CONTRIBUTE. THE TOOLKIT IS NOT YET COMPLETE.**
 
 To contribute to the modloader, follow these steps:
