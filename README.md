@@ -1,4 +1,4 @@
-This repository contains the tools used to mod Magicka.
+This repository contains the tools and patches used to mod Magicka.
 
 **THIS GUIDE DETAILS THE STEPS THAT WILL BE REQUIRED TO CONTRIBUTE. THE TOOLKIT IS NOT YET COMPLETE.**
 
