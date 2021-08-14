@@ -10,6 +10,6 @@ To contribute to the modloader, follow these steps:
 - Assuming the setup process completed succesfully, an explorer window should open with a specific folder opened. This is the solution you want to edit when adding features to the ModLoader;
 - **Make sure to always test your changes;**
 - To push your changes to your repository, open the Modding Toolkit as a modder and run the `Create Patches` command. This will generate the list of changes in the `Patches` folder, which you can then push;
-- **Make sure to run `Apply Patches` whenever updating from remote;
+- **Make sure to run `Apply Patches` whenever updating from remote;**
 
 All these steps are required since we cannot legally upload the modified executable or source code.
