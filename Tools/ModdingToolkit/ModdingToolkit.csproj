@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+	  <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Instructions.txt" />
+    <None Remove="Wizard.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Texts\Instructions.txt" />
+    <EmbeddedResource Include="Texts\Wizard.txt" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="ICSharpCode.Decompiler" Version="7.1.0.6543" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DiffPatch">
+      <HintPath>..\..\Libs\DiffPatch.dll</HintPath>
+    </Reference>
+    <Reference Include="Webmilio.Commons">
+      <HintPath>..\..\Libs\Webmilio.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="Webmilio.Commons.Console">
+      <HintPath>..\..\Libs\Webmilio.Commons.Console.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Wizard.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Patching\" />
+  </ItemGroup>
+
+	
+</Project>

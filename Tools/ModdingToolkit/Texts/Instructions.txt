@@ -1,0 +1,4 @@
+﻿Welcome!
+
+For yes/no (y/n) questions:
+If (y/n) is suffixed by a '!' (as in y/n!), that means anything outside the accepted values will be treated as a 'no'.
