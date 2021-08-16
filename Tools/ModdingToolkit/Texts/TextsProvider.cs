@@ -32,5 +32,6 @@ namespace ModdingToolkit.Texts
 
         public string Wizard { get; private set; }
         public string Instructions { get; private set; }
+        public string SetupDebugCopy { get; set; }
     }
 }

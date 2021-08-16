@@ -13,11 +13,13 @@
 
   <ItemGroup>
     <None Remove="Instructions.txt" />
+    <None Remove="Texts\SetupDebugCopy.txt" />
     <None Remove="Wizard.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Texts\Instructions.txt" />
+    <EmbeddedResource Include="Texts\SetupDebugCopy.txt" />
     <EmbeddedResource Include="Texts\Wizard.txt" />
   </ItemGroup>
   
