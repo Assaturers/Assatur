@@ -5,7 +5,7 @@ This repository contains the tools and patches used to mod Magicka.
 **THIS GUIDE DETAILS THE STEPS THAT WILL BE REQUIRED TO CONTRIBUTE. THE TOOLKIT IS NOT YET COMPLETE.**
 
 To contribute to the modloader, follow these steps:
-- Fork this repository and clone it onto your computer;
+- Fork this repository and clone it onto your computer into the Magicka installation folder;
 - Open `Tools.sln` under the Tools directory and run/build the `ModdingToolkit` project;
 - Run said Toolkit and answer `y` to the first question (`Are you a modder ?`);
 - Enter the number corresponding to the `Setup Environment` command and wait for it to finish, answering any question asked during the process;
