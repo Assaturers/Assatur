@@ -97,8 +97,10 @@ namespace ModdingToolkit
                     Environment.NewLine, (int) e.Code, e.Code.ToString(), e.Message);
             }
 
+#if DEBUG
             Console.Write("Press any key to exit!");
             Console.ReadKey();
+#endif
         }
 
         public ServiceProvider Services { get; }

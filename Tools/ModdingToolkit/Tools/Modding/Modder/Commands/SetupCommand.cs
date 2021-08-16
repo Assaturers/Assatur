@@ -35,13 +35,13 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
             _loc.DecompiledAssatur.Recreate(true);
             _loc.Patches.Recreate(true); // Wait for patch download
 
-            Console.Write("Decompiling Magicka... ");
+            Console.Write("Decompiling Magicka, this can take a long time (especially if Magicka is not on fast storage)... ");
             await _decompiler.DecompileFile(magickaExe.FullName, _loc.DecompiledMagicka.FullName);
-            Console.WriteLine("Done!");
+            Console.WriteLine("Done.");
 
             Console.Write("Cloning decompiled Magicka... ");
             _loc.DecompiledMagicka.CopyTo(_loc.DecompiledAssatur, true);
-            Console.WriteLine("Done!");
+            Console.WriteLine("Done.");
 
             Console.Write("Validating project... ");
             Console.WriteLine("Done.");
