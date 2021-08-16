@@ -1,7 +1,5 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
-using ModdingToolkit.Magicka;
 using ModdingToolkit.Magicka.Finding;
 using ModdingToolkit.Patching;
 

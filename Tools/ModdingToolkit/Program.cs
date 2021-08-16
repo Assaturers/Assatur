@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
-using ModdingToolkit.Commands;
-using ModdingToolkit.Magicka;
 using ModdingToolkit.Magicka.Finding;
 using ModdingToolkit.Texts;
 using ModdingToolkit.Tools.Modding;
-using ModdingToolkit.Tools.Modding.Modder;
-using ModdingToolkit.Tools.Modding.Modder.Commands;
 using ModdingToolkit.Tools.User;
 using Webmilio.Commons.Console;
 using Webmilio.Commons.DependencyInjection;
-using Webmilio.Commons.Extensions;
-using Webmilio.Commons.Loaders;
 
 namespace ModdingToolkit
 {

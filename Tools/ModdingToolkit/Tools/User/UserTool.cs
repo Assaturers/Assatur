@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using ModdingToolkit.Magicka;
 using ModdingToolkit.Magicka.Installing;
 using Webmilio.Commons.DependencyInjection;
 

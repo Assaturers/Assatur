@@ -8,6 +8,8 @@
         SteamInstallPathNotFound = 2,
 
         MagickaFolderNotFound = 3,
-        MagickaExecutableNotFound = 4
+        MagickaExecutableNotFound = 4,
+
+        BuildFailed = 5
     }
 }

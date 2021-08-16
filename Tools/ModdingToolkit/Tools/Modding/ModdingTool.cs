@@ -1,11 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using ModdingToolkit.Magicka;
-using ModdingToolkit.Tools.Modding.Modder;
 using ModdingToolkit.Tools.Modding.Modder.Commands;
 using Webmilio.Commons.DependencyInjection;
-using Webmilio.Commons.Loaders;
 
 namespace ModdingToolkit.Tools.Modding
 {

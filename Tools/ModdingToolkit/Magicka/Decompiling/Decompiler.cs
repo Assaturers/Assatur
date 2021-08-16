@@ -16,7 +16,7 @@ namespace ModdingToolkit.Magicka.Decompiling
             if (!Directory.Exists(to))
                 Directory.CreateDirectory(to);
 
-            var module = new PEFile(from);
+            using var module = new PEFile(from);
             var resolver = new UniversalAssemblyResolver(from, false, module.Reader.DetectTargetFrameworkId());
 
             var decompiler = new WholeProjectDecompiler(GetSettings(module), resolver, resolver, null);

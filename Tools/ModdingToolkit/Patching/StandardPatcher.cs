@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using DiffPatch;
 using ModdingToolkit.Diffing;
@@ -37,7 +36,7 @@ namespace ModdingToolkit.Patching
             var extension = Path.GetExtension(shortName);
             var destFile = new FileInfo(destFolder.CombineString(Path.GetFileNameWithoutExtension(shortName)));
 
-            Console.WriteLine($"Patching {patch.Name}");
+            Console.WriteLine($"Applying {shortName}");
 
             if (extension.Equals(StandardDiffer.PatchExtension))
             {

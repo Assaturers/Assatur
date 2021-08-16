@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using ModdingToolkit.Magicka;
 using ModdingToolkit.Magicka.Decompiling;
 using ModdingToolkit.Magicka.Finding;
 

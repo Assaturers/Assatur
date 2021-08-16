@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using DiffPatch;
 using ModdingToolkit.Diffing;
 using ModdingToolkit.Magicka.Finding;
-using Webmilio.Commons.Console;
-using Webmilio.Commons.Extensions;
 
 namespace ModdingToolkit.Tools.Modding.Modder.Commands
 {

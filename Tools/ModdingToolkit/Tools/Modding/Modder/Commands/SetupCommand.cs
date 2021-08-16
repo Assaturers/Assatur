@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using ModdingToolkit.Magicka;
 using ModdingToolkit.Magicka.Decompiling;
 using ModdingToolkit.Magicka.Finding;
 using ModdingToolkit.Patching;
@@ -84,6 +85,11 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
                     ConsoleHelper.WriteLineError("Failed!");
                 }
             });
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Process.Start("explorer.exe", $"\"{_loc.DecompiledAssatur}\"");
+            }
         }
 
         public override string Name { get; } = "Setup Environment";
