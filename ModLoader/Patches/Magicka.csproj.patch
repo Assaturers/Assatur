@@ -1,3 +1,6 @@
+@@ -7,1 +7,1 @@
+-    <TargetFramework>net35</TargetFramework>
++    <TargetFramework>net452</TargetFramework>
 @@ -23,1 +23,3 @@
 -    <Reference Include="Microsoft.Xna.Framework" />
 +    <Reference Include="Microsoft.Xna.Framework">
