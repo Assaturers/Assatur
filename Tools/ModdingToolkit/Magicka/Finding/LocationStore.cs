@@ -14,18 +14,14 @@ namespace ModdingToolkit.Magicka.Finding
     {
         public LocationStore()
         {
-            MagickaExecutable = new FileInfo(PlatformSearch().Result);
+            MagickaExe = new FileInfo(PlatformSearch().Result);
+            MagickaConfig = new FileInfo($"{MagickaExe.FullName}.config");
 
-            FileInfo backupMagicka = new(Path.Combine(MagickaExecutable.DirectoryName, Constants.MagickaExecutableBackup));
-
-            if (backupMagicka.Exists)
-                MagickaExecutable = backupMagicka;
-
-            Assatur = MagickaExecutable.Directory.Combine(Constants.AssaturName);
+            Assatur = MagickaExe.Directory.Combine(Constants.AssaturName);
             ModLoader = Assatur.Combine("ModLoader");
 
-            DecompiledMagicka = ModLoader.Combine(Constants.Magicka);
-            DecompiledAssatur = ModLoader.Combine(Constants.AssaturName);
+            DecompMagicka = ModLoader.Combine(Constants.Magicka);
+            DecompAssatur = ModLoader.Combine(Constants.AssaturName);
             Patches = ModLoader.Combine(Constants.PatchesFolder);
         }
 
@@ -35,8 +31,8 @@ namespace ModdingToolkit.Magicka.Finding
             Assatur.Create();
             ModLoader.Create();
 
-            DecompiledMagicka.Create();
-            DecompiledAssatur.Create();
+            DecompMagicka.Create();
+            DecompAssatur.Create();
             Patches.Create();
 
             return Task.CompletedTask;
@@ -100,7 +96,7 @@ namespace ModdingToolkit.Magicka.Finding
             if (magickaPath == default)
             {
                 throw new ExecutionException(ExitCodes.MagickaExecutableNotFound,
-                    $"Could not find {Constants.MagickaExecutable}!\n" +
+                    $"Could not find {Constants.MagickaExe}!\n" +
                     "You might want to verify your game integrity.");
             }
 
@@ -183,13 +179,33 @@ namespace ModdingToolkit.Magicka.Finding
             return path;
         }
 
-        public FileInfo MagickaExecutable { get; }
+
+        public void RestoreBackup()
+        {
+            FileInfo exeBackup = new($"{MagickaExe}{Constants.BackupExtension}");
+            if (exeBackup.Exists)
+            {
+                MagickaExe.Delete();
+                exeBackup.MoveTo(MagickaExe.FullName);
+            }
+
+            FileInfo configBackup = new($"{MagickaConfig}{Constants.BackupExtension}");
+            if (configBackup.Exists)
+            {
+                MagickaConfig.Delete();
+                configBackup.MoveTo(MagickaConfig.FullName);
+            }
+        }
+
+
+        public FileInfo MagickaExe { get; }
+        public FileInfo MagickaConfig { get; }
 
         public DirectoryInfo Assatur { get; }
         public DirectoryInfo ModLoader { get; }
         
-        public DirectoryInfo DecompiledMagicka { get; }
-        public DirectoryInfo DecompiledAssatur { get; }
+        public DirectoryInfo DecompMagicka { get; }
+        public DirectoryInfo DecompAssatur { get; }
         public DirectoryInfo Patches { get; }
     }
 }

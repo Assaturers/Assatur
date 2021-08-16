@@ -29,19 +29,20 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
 
         public override async Task Execute()
         {
-            var magickaExe = _loc.MagickaExecutable;
+            var magickaExe = _loc.MagickaConfig;
             await _loc.EnsureIntegrity();
 
-            _loc.DecompiledMagicka.Recreate(true);
-            _loc.DecompiledAssatur.Recreate(true);
+            _loc.DecompMagicka.Recreate(true);
+            _loc.DecompAssatur.Recreate(true);
             _loc.Patches.Recreate(true); // Wait for patch download
 
             Console.Write("Decompiling Magicka, this can take a long time (especially if Magicka is not on fast storage)... ");
-            await _decompiler.DecompileFile(magickaExe.FullName, _loc.DecompiledMagicka.FullName);
+            _loc.RestoreBackup();
+            await _decompiler.DecompileFile(magickaExe.FullName, _loc.DecompMagicka.FullName);
             Console.WriteLine("Done.");
 
             Console.Write("Cloning decompiled Magicka... ");
-            _loc.DecompiledMagicka.CopyTo(_loc.DecompiledAssatur, true);
+            _loc.DecompMagicka.CopyTo(_loc.DecompAssatur, true);
             Console.WriteLine("Done.");
 
             Console.Write("Validating project... ");
@@ -50,7 +51,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
             Console.WriteLine("Applying patches to Assatur... ");
             await StandardPatcher.StandardPatch(_patcher, _loc);
 
-            DirectoryInfo debugTarget = _loc.DecompiledAssatur
+            DirectoryInfo debugTarget = _loc.DecompAssatur
                     .CreateSubdirectory("bin")
                     .CreateSubdirectory("Debug")
                     .CreateSubdirectory("net452");
@@ -65,7 +66,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
                     if (s.EndsWith('/'))
                     {
                         DirectoryInfo
-                            from = _loc.MagickaExecutable.Directory.Combine(s),
+                            from = _loc.MagickaConfig.Directory.Combine(s),
                             to = debugTarget.Combine(s);
 
                         from.CopyTo(to, true);
@@ -73,7 +74,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
                     else
                     {
                         string
-                            from = Path.Combine(_loc.MagickaExecutable.DirectoryName, s),
+                            from = Path.Combine(_loc.MagickaConfig.DirectoryName, s),
                             to = Path.Combine(debugTarget.FullName, s);
 
                         File.Copy(from, to);
@@ -88,7 +89,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                Process.Start("explorer.exe", $"\"{_loc.DecompiledAssatur}\"");
+                Process.Start("explorer.exe", $"\"{_loc.DecompAssatur}\"");
             }
         }
 

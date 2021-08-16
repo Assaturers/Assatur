@@ -36,18 +36,19 @@ namespace ModdingToolkit.Magicka.Installing
             Console.WriteLine("This installer will guide you through the steps required to install Assatur, the Magicka ModLoader created by Webmilio.");
 
             Console.WriteLine("We'll begin with finding where you have Magicka installed.");
-            Console.WriteLine($"Magicka installed on {_loc.MagickaExecutable.Directory}...");
+            Console.WriteLine($"Magicka installed on {_loc.MagickaExe.Directory}...");
 
             Console.WriteLine();
 
             DirectoryInfo tempDir = new(Path.Combine(Path.GetTempPath(), "Magicka"));
-            tempDir.Create();
+            tempDir.Recreate(true);
 
             DirectoryInfo decompileDir = tempDir.CreateSubdirectory("Decompiled");
             DirectoryInfo sourceDir = tempDir.CreateSubdirectory("Source");
 
-            Console.Write("Decompiling {0} into {1}, this can take a long time... ", Constants.MagickaExecutable, decompileDir);
-            await _decompiler.DecompileFile(_loc.MagickaExecutable.FullName, decompileDir.FullName);
+            Console.Write("Decompiling {0} into {1}, this can take a long time... ", Constants.MagickaExe, decompileDir);
+            _loc.RestoreBackup();
+            await _decompiler.DecompileFile(_loc.MagickaExe.FullName, decompileDir.FullName);
             Console.WriteLine("Done.");
 
             Console.Write("Acquiring remote source...");
@@ -55,33 +56,33 @@ namespace ModdingToolkit.Magicka.Installing
             Console.WriteLine("Done.");
 
             Console.Write("Applying patches... ");
-            await _patcher.Patch(sourceDir.GetDirectories()[0].Combine(@"\ModLoader", "Patches"), decompileDir);
+            await _patcher.Patch(sourceDir.GetDirectories()[0].Combine(@"\ModLoader", Constants.PatchesFolder), decompileDir);
             Console.WriteLine("Done.");
 
             Console.Write("Validating build... ");
             await _builder.Build(decompileDir.CombineString("Magicka.csproj"));
             Console.WriteLine("Magicka successfully rebuilt.");
 
-            string[] toCopy = { Constants.MagickaExecutable, "Magicka.exe.config" };
+            string[] toCopy = { Constants.MagickaExe, Constants.MagickaConfig  };
 
-            var from = Path.Combine(decompileDir.FullName, "bin", "Debug", "net452");
+            var from = Path.Combine(decompileDir.FullName, "bin", Constants.Users.BuildConfiguration, "net452");
 
             try
             {
                 toCopy.Do(tc =>
                 {
-                    FileInfo backup = new(Path.Combine(_loc.MagickaExecutable.DirectoryName, $"{tc}.bak"));
+                    FileInfo backup = new(Path.Combine(_loc.MagickaExe.DirectoryName, $"{tc}.bak"));
 
                     if (!backup.Exists)
                     {
                         Console.Write($"Backing up {tc}... ");
-                        CopyRetry(Path.Combine(_loc.MagickaExecutable.DirectoryName, tc), backup.FullName);
+                        CopyRetry(Path.Combine(_loc.MagickaExe.DirectoryName, tc), backup.FullName);
 
                         Console.WriteLine("Done.");
                     }
 
                     Console.Write($"Copying new {tc}... ");
-                    CopyRetry(Path.Combine(from, tc), Path.Combine(_loc.MagickaExecutable.DirectoryName, tc));
+                    CopyRetry(Path.Combine(from, tc), Path.Combine(_loc.MagickaExe.DirectoryName, tc));
                     Console.WriteLine("Done.");
                 });
             }

@@ -72,7 +72,7 @@ namespace ModdingToolkit.Patching
 
         public static async Task StandardPatch(IPatcher patcher, ILocationStore loc)
         {
-            await patcher.Patch(loc.Patches, loc.DecompiledAssatur);
+            await patcher.Patch(loc.Patches, loc.DecompAssatur);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace ModdingToolkit.Building
             
             Process msBuild;
             {
-                msBuild = Process.Start(MakeProcessInfo(root, "msbuild", "/property:Configuration=Release"));
+                msBuild = Process.Start(MakeProcessInfo(root, "msbuild", $"/property:Configuration={Constants.Users.BuildConfiguration}"));
                 await msBuild.WaitForExitAsync();
             }
 

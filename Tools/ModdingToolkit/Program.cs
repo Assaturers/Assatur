@@ -59,7 +59,7 @@ namespace ModdingToolkit
 
             Console.Write("Initializing Location Store...");
             _ = Services.GetService<ILocationStore>();
-            Console.WriteLine("Done. Found on {0}.", locationStore.MagickaExecutable);
+            Console.WriteLine("Done. Found on {0}.", locationStore.MagickaConfig);
 
             bool modder;
 

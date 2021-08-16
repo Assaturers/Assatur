@@ -30,7 +30,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
             }
 
             Console.Write("Decompiling...");
-            await _decompiler.DecompileFile(_loc.MagickaExecutable.FullName, dest);
+            await _decompiler.DecompileFile(_loc.MagickaConfig.FullName, dest);
 
             Console.WriteLine("Done!");
         }

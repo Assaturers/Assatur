@@ -24,7 +24,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
             patches.Create();
 
             Console.WriteLine("Diffing...");
-            await _differ.DiffFolders(_loc.DecompiledMagicka, _loc.DecompiledAssatur, patches);
+            await _differ.DiffFolders(_loc.DecompMagicka, _loc.DecompAssatur, patches);
             Console.WriteLine("Done.");
         }
 

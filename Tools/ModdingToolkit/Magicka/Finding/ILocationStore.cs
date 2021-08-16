@@ -6,14 +6,16 @@ namespace ModdingToolkit.Magicka.Finding
     public interface ILocationStore
     {
         Task EnsureIntegrity();
+        void RestoreBackup();
 
-        FileInfo MagickaExecutable { get; }
+        FileInfo MagickaExe { get; }
+        FileInfo MagickaConfig { get; }
 
-       DirectoryInfo Assatur { get; }
-       DirectoryInfo ModLoader { get; }
+        DirectoryInfo Assatur { get; }
+        DirectoryInfo ModLoader { get; }
 
-       DirectoryInfo DecompiledAssatur { get; }
-       DirectoryInfo DecompiledMagicka { get; }
-       DirectoryInfo Patches { get; }
+        DirectoryInfo DecompAssatur { get; }
+        DirectoryInfo DecompMagicka { get; }
+        DirectoryInfo Patches { get; }
     }
 }

@@ -4,10 +4,17 @@
     {
         public const string
             Magicka = "Magicka",
-            MagickaExecutable = Magicka + ".exe",
-            MagickaExecutableBackup = MagickaExecutable + ".bak",
-            
+            MagickaExe = Magicka + ".exe",
+            MagickaConfig = MagickaExe + ".config",
+
+            BackupExtension = ".bak",
+
             AssaturName = "Assatur",
             PatchesFolder = "Patches";
+
+        public class Users
+        {
+            public const string BuildConfiguration = "Release";
+        }
     }
 }
