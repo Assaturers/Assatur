@@ -29,7 +29,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
 
             _loc.DecompiledMagicka.Recreate(true);
             _loc.DecompiledAssatur.Recreate(true);
-            // _loc.Patches.Recreate(true);
+            // _loc.Patches.Recreate(true); // Wait for patch download
 
             Console.Write("Decompiling Magicka... ");
             await _decompiler.DecompileFile(magickaExe.FullName, _loc.DecompiledMagicka.FullName);
@@ -43,7 +43,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
             Console.WriteLine("Done.");
 
             Console.WriteLine("Applying patches to Assatur... ");
-            await _patcher.Patch(_loc.Patches, _loc.DecompiledMagicka);
+            await _patcher.Patch(_loc.Patches, _loc.DecompiledAssatur);
         }
 
         public override string Name { get; } = "Setup Environment";
