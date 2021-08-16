@@ -1,6 +1,6 @@
-@@ -24,0 +24,5 @@
-+#if DEBUG
+@@ -24,1 +24,4 @@
 +            if (iResponse == default)
 +                return;
-+#endif
 +
+-			Action<bool> action = (Action<bool>)iArguments;
++            Action<bool> action = (Action<bool>)iArguments;
