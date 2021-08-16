@@ -32,6 +32,8 @@ namespace ModdingToolkit.Magicka.Decompiling
                 RemoveDeadCode = true,
                 RemoveDeadStores = true,
 
+                Ranges = false,
+
                 ThrowOnAssemblyResolveErrors = false,
                 UseSdkStyleProjectFormat = WholeProjectDecompiler.CanUseSdkStyleProjectFormat(module),
             };
