@@ -1,0 +1,6 @@
+﻿steam_api.dll
+steam_appid.txt
+pops_api.dll
+pops_api.lib
+Content/
+Cursors/
