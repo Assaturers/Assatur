@@ -46,7 +46,7 @@ namespace ModdingToolkit.Magicka.Installing
             DirectoryInfo decompileDir = tempDir.CreateSubdirectory("Decompiled");
             DirectoryInfo sourceDir = tempDir.CreateSubdirectory("Source");
 
-            Console.Write("Decompiling Magicka.exe into {0}, this can take a long time... ", decompileDir);
+            Console.Write("Decompiling {0} into {1}, this can take a long time... ", Constants.MagickaExecutable, decompileDir);
             await _decompiler.DecompileFile(_loc.MagickaExecutable.FullName, decompileDir.FullName);
             Console.WriteLine("Done.");
 
@@ -62,7 +62,7 @@ namespace ModdingToolkit.Magicka.Installing
             await _builder.Build(decompileDir.CombineString("Magicka.csproj"));
             Console.WriteLine("Magicka successfully rebuilt.");
 
-            string[] toCopy = { "Magicka.exe", "Magicka.exe.config" };
+            string[] toCopy = { Constants.MagickaExecutable, "Magicka.exe.config" };
 
             var from = Path.Combine(decompileDir.FullName, "bin", "Debug", "net452");
 

@@ -10,7 +10,7 @@ namespace ModdingToolkit.GitHub
     {
         public static async Task<ReleaseResponse> GetLatest(HttpClient client)
         {
-            var response = await client.GetStringAsync("https://api.github.com/repos/Assaturers/Assatur/releases/latest");
+            var response = await client.GetStringAsync($"https://api.github.com/repos/Assaturers/{Constants.AssaturName}/releases/latest");
             var release = JsonSerializer.Deserialize<ReleaseResponse>(response);
 
             return release;

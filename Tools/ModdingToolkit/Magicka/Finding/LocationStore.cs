@@ -16,12 +16,17 @@ namespace ModdingToolkit.Magicka.Finding
         {
             MagickaExecutable = new FileInfo(PlatformSearch().Result);
 
-            Assatur = MagickaExecutable.Directory.Combine("Assatur");
+            FileInfo backupMagicka = new(Path.Combine(MagickaExecutable.DirectoryName, Constants.MagickaExecutableBackup));
+
+            if (backupMagicka.Exists)
+                MagickaExecutable = backupMagicka;
+
+            Assatur = MagickaExecutable.Directory.Combine(Constants.AssaturName);
             ModLoader = Assatur.Combine("ModLoader");
 
-            DecompiledMagicka = ModLoader.Combine("Magicka");
-            DecompiledAssatur = ModLoader.Combine("Assatur");
-            Patches = ModLoader.Combine("Patches");
+            DecompiledMagicka = ModLoader.Combine(Constants.Magicka);
+            DecompiledAssatur = ModLoader.Combine(Constants.AssaturName);
+            Patches = ModLoader.Combine(Constants.PatchesFolder);
         }
 
 
@@ -95,7 +100,7 @@ namespace ModdingToolkit.Magicka.Finding
             if (magickaPath == default)
             {
                 throw new ExecutionException(ExitCodes.MagickaExecutableNotFound,
-                    "Could not find Magicka.exe!\n" +
+                    $"Could not find {Constants.MagickaExecutable}!\n" +
                     "You might want to verify your game integrity.");
             }
 
