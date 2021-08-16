@@ -6,10 +6,10 @@ using ICSharpCode.Decompiler.CSharp.ProjectDecompiler;
 using ICSharpCode.Decompiler.Metadata;
 using Webmilio.Commons.DependencyInjection;
 
-namespace ModdingToolkit.Magicka
+namespace ModdingToolkit.Magicka.Decompiling
 {
     [Service]
-    public class MagickaDecompiler : IMagickaDecompiler
+    public class Decompiler : IDecompiler
     {
         public Task DecompileFile(string from, string to)
         {

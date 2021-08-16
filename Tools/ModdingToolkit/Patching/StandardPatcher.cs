@@ -13,11 +13,14 @@ namespace ModdingToolkit.Patching
     [Service]
     public class StandardPatcher : IPatcher
     {
-        public async Task Patch(DirectoryInfo destination, DirectoryInfo patches)
+        public async Task Patch(DirectoryInfo patches, DirectoryInfo destination)
         {
             var files = patches.GetFiles("*.patch*", SearchOption.AllDirectories);
-            List<Task> tasks = new(files.Length);
 
+            if (files.Length == 0)
+                return;
+
+            List<Task> tasks = new(files.Length);
             files.Do(f => tasks.Add(Patch(destination, patches, f)));
 
             await Task.WhenAll(tasks);
@@ -33,7 +36,7 @@ namespace ModdingToolkit.Patching
             var extension = Path.GetExtension(shortName);
             var destFile = new FileInfo(destFolder.CombineString(Path.GetFileNameWithoutExtension(shortName)));
 
-            Console.WriteLine($"Applying patch {patch.Name}");
+            Console.WriteLine($"Patching {patch.Name}");
 
             if (extension.Equals(StandardDiffer.PatchExtension))
             {

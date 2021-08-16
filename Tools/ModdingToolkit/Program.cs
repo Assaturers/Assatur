@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ModdingToolkit.Commands;
 using ModdingToolkit.Magicka;
+using ModdingToolkit.Magicka.Finding;
 using ModdingToolkit.Texts;
 using ModdingToolkit.Tools.Modding;
 using ModdingToolkit.Tools.Modding.Modder;
@@ -34,7 +35,6 @@ namespace ModdingToolkit
         public Program(ServiceProvider services)
         {
             Services = services;
-            Services.AddSingleton<PrototypeLoader<ModderCommand>>();
         }
 
         private async Task MainAsync(string[] args)
@@ -64,8 +64,20 @@ namespace ModdingToolkit
             Console.WriteLine(TextsProvider.Instructions);
             Console.WriteLine();
 
-            bool modder = InputHelper.Choose("First, are you a modder", false, true);
+            var locationStore = Services.GetService<ILocationStore>();
+
+            Console.Write("Initializing Location Store...");
+            _ = Services.GetService<ILocationStore>();
+            Console.WriteLine("Done. Found on {0}.", locationStore.MagickaExecutable);
+
+            bool modder;
+
+#if RELEASE_USER
+            modder = false;
+#else
+            modder = InputHelper.Choose("First, are you a modder", false, true);
             Console.WriteLine();
+#endif
 
             try
             {

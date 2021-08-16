@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DiffPatch;
 using ModdingToolkit.Diffing;
+using ModdingToolkit.Magicka.Finding;
 using Webmilio.Commons.Console;
 using Webmilio.Commons.Extensions;
 
@@ -12,41 +13,27 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
 {
     public class DiffCommand : ModderCommand
     {
+        private readonly ILocationStore _loc;
         private readonly IDiffer _differ;
         
-        public DiffCommand(IDiffer differ)
+        public DiffCommand(ILocationStore loc, IDiffer differ)
         {
+            _loc = loc;
             _differ = differ;
         }
 
         public override async Task Execute()
         {
-            DirectoryInfo original, updated, patches;
+            var patches = _loc.Patches;
 
-#if DEBUG
-            original = new(@"L:\Coding\Games\Modding\Clean");
-            updated = new(@"L:\Coding\Games\Modding\Updated");
-            patches = new(@"L:\Coding\Games\Modding\Patches");
-#else
-            Console.Write("Original Folder: ");
-            original = Console.ReadLine();
-
-            Console.Write("Updated Folder: ");
-            updated = Console.ReadLine();
-
-            Console.Write("Patches Output: ");
-            patches = Console.ReadLine();
-#endif
-
-            if (patches.Exists)
-                patches.Delete(true);
-
+            patches.Delete(true);
             patches.Create();
 
-            await _differ.DiffFolders(original, updated, patches);
-            Console.WriteLine();
+            Console.WriteLine("Diffing...");
+            await _differ.DiffFolders(_loc.DecompiledMagicka, _loc.DecompiledAssatur, patches);
+            Console.WriteLine("Done.");
         }
 
-        public override string Name { get; } = "Create Patches";
+        public override string Name { get; } = "Create Patches (Diff)";
     }
 }

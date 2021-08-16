@@ -2,26 +2,25 @@
 using System.IO;
 using System.Threading.Tasks;
 using ModdingToolkit.Magicka;
+using ModdingToolkit.Magicka.Decompiling;
+using ModdingToolkit.Magicka.Finding;
 
 namespace ModdingToolkit.Tools.Modding.Modder.Commands
 {
     public class DecompileCommand : ModderCommand
     {
-        private readonly IMagickaFinder _finder;
-        private readonly IMagickaDecompiler _decompiler;
+        private readonly ILocationStore _loc;
+        private readonly IDecompiler _decompiler;
 
-        public DecompileCommand(IMagickaFinder finder, IMagickaDecompiler decompiler)
+        public DecompileCommand(ILocationStore loc, IDecompiler decompiler)
         {
-            _finder = finder;
+            _loc = loc;
             _decompiler = decompiler;
         }
 
 
         public override async Task Execute()
         {
-            var path = await _finder.FindMagicka();
-            Console.WriteLine($"Magicka installed on {path}");
-
             Console.Write("Where would you like to decompile? " );
             var dest = Console.ReadLine();
 
@@ -32,7 +31,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
             }
 
             Console.Write("Decompiling...");
-            await _decompiler.DecompileFile(path, dest);
+            await _decompiler.DecompileFile(_loc.MagickaExecutable.FullName, dest);
 
             Console.WriteLine("Done!");
         }

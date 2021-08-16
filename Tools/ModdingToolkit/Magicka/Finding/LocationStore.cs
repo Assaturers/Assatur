@@ -5,47 +5,40 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using Webmilio.Commons.DependencyInjection;
+using Webmilio.Commons.Extensions;
 
-namespace ModdingToolkit.Magicka
+namespace ModdingToolkit.Magicka.Finding
 {
     [Service]
-    public class MagickaProcessor : IMagickaProcessor, IMagickaInstaller, IMagickaFinder
+    public class LocationStore : ILocationStore
     {
-        private readonly IMagickaDecompiler _decompiler;
-
-        public MagickaProcessor(IMagickaDecompiler decompiler)
+        public LocationStore()
         {
-            _decompiler = decompiler;
+            MagickaExecutable = new FileInfo(PlatformSearch().Result);
+
+            Assatur = MagickaExecutable.Directory.Combine("Assatur");
+            ModLoader = Assatur.Combine("ModLoader");
+
+            DecompiledMagicka = ModLoader.Combine("Magicka");
+            DecompiledAssatur = ModLoader.Combine("Assatur");
+            Patches = ModLoader.Combine("Patches");
         }
 
-        public async Task Install()
+
+        public Task EnsureIntegrity()
         {
-            Console.WriteLine("Welcome to the Assatur Installer!");
-            Console.WriteLine("This installer will guide you through the steps required to install Assatur, the Magicka ModLoader created by Webmilio.");
+            Assatur.Create();
+            ModLoader.Create();
 
-            Console.WriteLine("We'll begin with finding where you have Magicka installed.");
+            DecompiledMagicka.Create();
+            DecompiledAssatur.Create();
+            Patches.Create();
 
-            string installLocation = await FindMagicka();
-            Console.WriteLine($"Magicka installed on {installLocation}...");
-
-            Console.WriteLine();
-            string tempPath = Path.Combine(Path.GetTempPath(), "Magicka");
-            string decompilePath = Path.Combine(tempPath, "Decompiled");
-
-            Console.Write("Decompiling Magicka.exe into {0}, this can take a long time... ", decompilePath);
-            await _decompiler.DecompileFile(installLocation, decompilePath);
-            Console.WriteLine("Done.");
-
-            Console.Write("Applying patches... ");
-            // _patcher.Patch(decompilePath);
-            Console.WriteLine();
-
-            Console.Write("Deleting temporary Magicka folder... ");
-            Directory.Delete(tempPath, true);
-            Console.WriteLine("Done.");
+            return Task.CompletedTask;
         }
 
-        public Task<string> FindMagicka()
+
+        public Task<string> PlatformSearch()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -168,10 +161,7 @@ namespace ModdingToolkit.Magicka
         {
             var presumed = Path.Combine(library, "common", "Magicka", "Magicka.exe");
 
-            if (File.Exists(presumed))
-                return presumed;
-
-            return default;
+            return File.Exists(presumed) ? presumed : default;
         }
 
         // Linux Stuff
@@ -187,5 +177,14 @@ namespace ModdingToolkit.Magicka
 
             return path;
         }
+
+        public FileInfo MagickaExecutable { get; }
+
+        public DirectoryInfo Assatur { get; }
+        public DirectoryInfo ModLoader { get; }
+        
+        public DirectoryInfo DecompiledMagicka { get; }
+        public DirectoryInfo DecompiledAssatur { get; }
+        public DirectoryInfo Patches { get; }
     }
 }

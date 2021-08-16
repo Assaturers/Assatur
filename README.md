@@ -15,3 +15,4 @@ To contribute to the modloader, follow these steps:
 - **Make sure to run `Apply Patches` whenever updating from remote;**
 
 All these steps are required since we cannot legally upload the modified executable or source code.
+The installer will always setup the environment in the same folder as Magicka is. **Do not move it from that folder.** This will be changed in the future.

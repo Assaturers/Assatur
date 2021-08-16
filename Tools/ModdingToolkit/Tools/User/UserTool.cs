@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ModdingToolkit.Magicka;
+using ModdingToolkit.Magicka.Installing;
 using Webmilio.Commons.DependencyInjection;
 
 namespace ModdingToolkit.Tools.User
@@ -7,9 +8,9 @@ namespace ModdingToolkit.Tools.User
     [Service]
     public class UserTool : IUserTool
     {
-        private readonly IMagickaInstaller _installer;
+        private readonly IAssaturInstaller _installer;
 
-        public UserTool(IMagickaInstaller installer)
+        public UserTool(IAssaturInstaller installer)
         {
             _installer = installer;
         }

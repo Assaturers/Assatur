@@ -26,8 +26,6 @@ namespace ModdingToolkit.Diffing
 
             IList<string> toCreate, toDiff, toDelete;
 
-            Console.WriteLine("Sorting through files... ");
-
             {
                 var strippedOriginal = SelectFilter(originalFiles, origin);
                 var strippedUpdated = SelectFilter(updatedFiles, updated);
