@@ -20,8 +20,8 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
 
         public override async Task Execute()
         {
-
-            // await _patcher.Patch(dest, patches);
+            Console.WriteLine("Applying patches to Assatur... ");
+            await StandardPatcher.StandardPatch(_patcher, _loc);
         }
 
         public override string Name { get; } = "Apply Patches";

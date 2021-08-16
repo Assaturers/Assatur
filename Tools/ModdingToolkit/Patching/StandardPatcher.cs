@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using DiffPatch;
 using ModdingToolkit.Diffing;
+using ModdingToolkit.Magicka.Finding;
 using Webmilio.Commons.DependencyInjection;
 using Webmilio.Commons.Extensions;
 
@@ -67,6 +68,12 @@ namespace ModdingToolkit.Patching
                     }
                 }
             }
+        }
+
+
+        public static async Task StandardPatch(IPatcher patcher, ILocationStore loc)
+        {
+            await patcher.Patch(loc.Patches, loc.DecompiledAssatur);
         }
     }
 }

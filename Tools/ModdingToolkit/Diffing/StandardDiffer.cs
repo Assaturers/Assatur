@@ -35,8 +35,7 @@ namespace ModdingToolkit.Diffing
                 toDelete = strippedOriginal.Where(so => !strippedUpdated.Any(su => su.Equals(so, StringComparison.OrdinalIgnoreCase))).ToArray();
             }
 
-            patches.Delete();
-            patches.Create();
+            patches.Recreate(true);
 
             List<Thread> threads = new(3);
 
@@ -141,9 +140,9 @@ namespace ModdingToolkit.Diffing
 
                 await action(file);
             }
-            catch
+            catch (Exception e)
             {
-                ConsoleHelper.WriteLineError($"Failed creating patch for {displayPath}.");
+                ConsoleHelper.WriteLineError("Failed creating patch for {0}:\n{1}.", displayPath, e);
             }
         }
     }

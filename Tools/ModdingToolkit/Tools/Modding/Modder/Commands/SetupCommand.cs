@@ -43,7 +43,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
             Console.WriteLine("Done.");
 
             Console.WriteLine("Applying patches to Assatur... ");
-            await _patcher.Patch(_loc.Patches, _loc.DecompiledAssatur);
+            await StandardPatcher.StandardPatch(_patcher, _loc);
         }
 
         public override string Name { get; } = "Setup Environment";
