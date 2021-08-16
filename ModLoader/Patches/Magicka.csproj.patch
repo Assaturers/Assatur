@@ -1,0 +1,15 @@
+@@ -23,1 +23,9 @@
+-    <Reference Include="Microsoft.Xna.Framework" />
++	<Reference Include="Microsoft.Xna.Framework">
++      <HintPath>C:\WINDOWS\assembly\GAC_32\Microsoft.Xna.Framework\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.dll</HintPath>
++    </Reference>
++	<Reference Include="Microsoft.Xna.Framework.Game">
++      <HintPath>C:\WINDOWS\assembly\GAC_32\Microsoft.Xna.Framework.Game\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Game.dll</HintPath>
++    </Reference>
++	<Reference Include="Microsoft.DirectX.DirectInput">
++      <HintPath>C:\WINDOWS\assembly\GAC\Microsoft.DirectX.DirectInput\1.0.2902.0__31bf3856ad364e35\Microsoft.DirectX.DirectInput.dll</HintPath>
++    </Reference>
+@@ -36,1 +44,0 @@
+-    <Reference Include="Microsoft.Xna.Framework.Game" />
+@@ -41,1 +48,0 @@
+-    <Reference Include="Microsoft.DirectX.DirectInput" />
