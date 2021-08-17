@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 using Webmilio.Commons.DependencyInjection;
 
 namespace ModdingToolkit.Building
@@ -16,7 +17,7 @@ namespace ModdingToolkit.Building
             
             Process msBuild;
             {
-                msBuild = Process.Start(MakeProcessInfo(root, "msbuild", $"/property:Configuration={Constants.Users.BuildConfiguration}"));
+                msBuild = Process.Start(MakeProcessInfo(root, GetMSBuildPath(), $"/property:Configuration={Constants.Users.BuildConfiguration}"));
                 await msBuild.WaitForExitAsync();
             }
 
@@ -41,5 +42,14 @@ namespace ModdingToolkit.Building
 
             return info;
         }
+
+#pragma warning disable CA1416 // Validate platform compatibility
+        public static string GetMSBuildPath()
+        {
+            using var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\MSBuild\4.0");
+
+            return key.GetValue("MSBuildOverrideTasksPath").ToString();
+        }
+#pragma warning restore
     }
 }

@@ -34,7 +34,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
 
             _loc.DecompMagicka.Recreate(true);
             _loc.DecompAssatur.Recreate(true);
-            _loc.Patches.Recreate(true); // Wait for patch download
+            // _loc.Patches.Recreate(true); // Wait for patch download
 
             Console.Write("Decompiling Magicka, this can take a long time (especially if Magicka is not on fast storage)... ");
             _loc.RestoreBackup();
