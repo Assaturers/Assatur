@@ -5,6 +5,8 @@ namespace ModdingToolkit.Magicka.Finding
 {
     public interface ILocationStore
     {
+        ILocationStore SetLocations(string magickaPath);
+
         Task EnsureIntegrity();
         void RestoreBackup();
 
