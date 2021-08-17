@@ -41,7 +41,8 @@ namespace ModdingToolkit.Magicka.Installing
             Console.WriteLine();
 
             DirectoryInfo tempDir = new(Path.Combine(Path.GetTempPath(), "Magicka"));
-            tempDir.Recreate(true);
+            tempDir.Delete(true);
+            tempDir.Create();
 
             DirectoryInfo decompileDir = tempDir.CreateSubdirectory("Decompiled");
             DirectoryInfo sourceDir = tempDir.CreateSubdirectory("Source");
