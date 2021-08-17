@@ -55,24 +55,11 @@ namespace ModdingToolkit
             Console.WriteLine(TextsProvider.Instructions);
             Console.WriteLine();
 
-            ILocationStore locationStore;
-            try
-            {
-                Console.WriteLine("Finding Magicka...");
+            var locationStore = Services.GetService<ILocationStore>();
 
-                var finder = Services.GetService<ILocationFinder>();
-                locationStore = new LocationStore().SetLocations(await finder.PlatformSearch());
-                Console.WriteLine("Done. Found on {0}.", finder);
-            }
-            catch (ExecutionException e)
-            {
-                WriteExecutionException(e);
-
-                var file = InputHelper.EnterFile("Looks like we couldn't find Magicka, please enter the path yourself: ");
-                locationStore = new LocationStore().SetLocations(file.FullName);
-            }
-
-            Services.AddInstance(locationStore);
+            Console.Write("Initializing Location Store...");
+            _ = Services.GetService<ILocationStore>();
+            Console.WriteLine("Done. Found on {0}.", locationStore.MagickaConfig);
 
             bool modder;
 
@@ -97,19 +84,14 @@ namespace ModdingToolkit
             catch (ExecutionException e)
             {
                 Console.WriteLine();
-                WriteExecutionException(e);
+                ConsoleHelper.WriteLineError("Error while executing toolkit:{0}Code: {1} ({2}){0}Message: {3}", 
+                    Environment.NewLine, (int) e.Code, e.Code.ToString(), e.Message);
             }
 
 #if DEBUG
             Console.Write("Press any key to exit!");
             Console.ReadKey();
 #endif
-        }
-
-        private void WriteExecutionException(ExecutionException e)
-        {
-            ConsoleHelper.WriteLineError("Error while executing toolkit:{0}Code: {1} ({2}){0}Message: {3}",
-                Environment.NewLine, (int)e.Code, e.Code.ToString(), e.Message);
         }
 
         public ServiceProvider Services { get; }
