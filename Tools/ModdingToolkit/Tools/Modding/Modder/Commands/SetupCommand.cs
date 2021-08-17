@@ -29,7 +29,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
 
         public override async Task Execute()
         {
-            var magickaExe = _loc.MagickaConfig;
+            var magickaExe = _loc.MagickaExe;
             await _loc.EnsureIntegrity();
 
             _loc.DecompMagicka.Recreate(true);
