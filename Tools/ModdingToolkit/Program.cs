@@ -68,7 +68,7 @@ namespace ModdingToolkit
             {
                 WriteExecutionException(e);
 
-                var file = InputHelper.EnterFile("Looks like we couldn't find Magicka, please enter the path yourself: ");
+                var file = InputHelper.EnterFile("Looks like we couldn't find Magicka, please enter the path to the executable yourself (must end with Magicka.exe): ");
                 locationStore = new LocationStore().SetLocations(file.FullName);
             }
 
