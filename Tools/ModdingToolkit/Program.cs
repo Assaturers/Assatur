@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using DiffPatch;
 using ModdingToolkit.Magicka.Finding;
 using ModdingToolkit.Texts;
 using ModdingToolkit.Tools.Modding;
+using ModdingToolkit.Tools.Modding.Modder.Commands;
 using ModdingToolkit.Tools.User;
 using Webmilio.Commons.Console;
 using Webmilio.Commons.DependencyInjection;
@@ -30,6 +33,23 @@ namespace ModdingToolkit
 
         private async Task MainAsync(string[] args)
         {
+            if (args.Length > 0)
+            {
+                System.Diagnostics.Debugger.Launch();
+
+                var lArgs = args.ToList();
+
+                if (lArgs.Contains("-m:diff"))
+                {
+                    var loader = Services.GetService<ModderCommandLoader>();
+                    var command = loader.Generic<DiffCommand>();
+
+                    await command.Execute();
+                }
+
+                return;
+            }
+
             await TextsProvider.Load(_assembly);
 
             {
