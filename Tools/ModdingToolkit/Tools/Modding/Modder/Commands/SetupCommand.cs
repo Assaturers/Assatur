@@ -57,7 +57,10 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
                     .CreateSubdirectory("net452");
 
             Console.WriteLine("Copying all required files and folder into target debug folder...");
-            _texts.SetupDebugCopy.Split(Environment.NewLine).Do(s =>
+            _texts.SetupDebugCopy.Split(
+                new string[] { "\r\n", "\r", "\n" },
+                StringSplitOptions.None
+                ).Do(s =>
             {
                 Console.Write($"Copying {s}... ");
 
