@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using ModdingToolkit.Building;
+using ModdingToolkit.Core;
 using ModdingToolkit.Magicka.Decompiling;
 using ModdingToolkit.Magicka.Finding;
 using ModdingToolkit.Patching;

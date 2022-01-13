@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using ModdingToolkit.Core;
 using Webmilio.Commons.DependencyInjection;
 
 namespace ModdingToolkit.Building

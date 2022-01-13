@@ -1,4 +1,4 @@
-﻿namespace ModdingToolkit
+﻿namespace ModdingToolkit.Core
 {
     public static class Constants
     {
@@ -11,6 +11,8 @@
 
             AssaturName = "Assatur",
             PatchesFolder = "Patches";
+
+        public const int MagickaAppId = 42910;
 
         public class Users
         {

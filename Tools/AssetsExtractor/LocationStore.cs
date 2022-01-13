@@ -5,18 +5,15 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using ModdingToolkit.Core;
-using Webmilio.Commons.DependencyInjection;
-using Webmilio.Commons.Extensions;
 
-namespace ModdingToolkit.Magicka.Finding
+namespace ModdingToolkit.AssetsExtractor
 {
-    [Service]
-    public class LocationStore : ILocationStore
+    public class LocationStore
     {
         public LocationStore()
         {
-            MagickaExe = new FileInfo(PlatformSearch().Result);
-            MagickaConfig = new FileInfo($"{MagickaExe.FullName}.config");
+            MagickaExe = new(PlatformSearch().Result);
+            MagickaConfig = new($"{MagickaExe.FullName}.config");
 
             Assatur = MagickaExe.Directory.Combine(Constants.AssaturName);
             ModLoader = Assatur.Combine("ModLoader");
@@ -60,7 +57,7 @@ namespace ModdingToolkit.Magicka.Finding
             string steamLocation = FindSteamInstallLocation();
 
             var defaultInstallPath = Path.Combine(steamLocation, "steamapps");
-            var paths = ParseVDFForPaths(await File.ReadAllLinesAsync(
+            var paths = ParseVDFForPaths(File.ReadAllLines(
                     Path.Combine(defaultInstallPath, "libraryfolders.vdf")));
 
             for (int i = 0; i < paths.Count; i++)

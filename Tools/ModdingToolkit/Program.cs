@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using DiffPatch;
+using ModdingToolkit.Core;
 using ModdingToolkit.Magicka.Finding;
 using ModdingToolkit.Texts;
 using ModdingToolkit.Tools.Modding;
@@ -15,7 +15,6 @@ namespace ModdingToolkit
 {
     internal class Program
     {
-        public const int MagickaAppId = 42910;
         private static Assembly _assembly = Assembly.GetExecutingAssembly();
 
         private static Task Main(string[] args)

@@ -1,4 +1,4 @@
-﻿namespace ModdingToolkit
+﻿namespace ModdingToolkit.Core
 {
     public enum ExitCodes
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ModdingToolkit
+namespace ModdingToolkit.Core
 {
     public class ExecutionException : Exception
     {
