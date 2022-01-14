@@ -29,9 +29,10 @@ namespace ModdingToolkit.AssetsExtractor
             var game = new MainThread();
             game.Start();
 
-            Thread.Sleep(500);
-            game.Game.Content.RootDirectory = contentDir.FullName;
+            while (!game.IsAlive)
+                Thread.Sleep(500);
 
+            game.Game.Content.RootDirectory = contentDir.FullName;
             int baseRoot = path.Length + 1;
 
             foreach (var file in contentDir.EnumerateFiles("*.xnb", SearchOption.AllDirectories))
