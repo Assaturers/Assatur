@@ -27,7 +27,7 @@ namespace ModdingToolkit.Magicka.Decompiling
 
         internal static DecompilerSettings GetSettings(PEFile module)
         {
-            return new(LanguageVersion.Latest)
+            return new(LanguageVersion.CSharp5)
             {
                 RemoveDeadCode = true,
                 RemoveDeadStores = true,

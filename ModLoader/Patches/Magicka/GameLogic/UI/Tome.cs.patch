@@ -1,5 +1,0 @@
-@@ -1599,1 +1599,3 @@
--			sVersionText.SetText(Application.ProductVersion);
-+
-+			sVersionText.SetText($"Magicka {Application.ProductVersion} / Assatur Versionless");
-+
