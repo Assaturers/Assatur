@@ -1,0 +1,15 @@
+@@ -357,0 +357,1 @@
++
+@@ -358,1 +359,7 @@
+-			string currentGameLanguage = SteamApps.GetCurrentGameLanguage();
++
++            if (string.IsNullOrWhiteSpace(steamGameLanguage))
++                steamGameLanguage = "en";
++
++            string currentGameLanguage = steamGameLanguage;
++            // TODO Add this back: string currentGameLanguage = SteamApps.GetCurrentGameLanguage();
++
+@@ -364,1 +371,2 @@
++			
+-			LanguageManager.Instance.SetLanguage(GlobalSettings.Instance.Language);
++            LanguageManager.Instance.SetLanguage(GlobalSettings.Instance.Language);
