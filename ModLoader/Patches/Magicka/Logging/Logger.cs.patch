@@ -1,0 +1,90 @@
+@@ -28,0 +28,1 @@
++			ModLoader,
+@@ -74,1 +75,0 @@
+-		[Conditional("LOGGER_VERBOSE")]
+@@ -79,1 +79,0 @@
+-		[Conditional("LOGGER_VERBOSE")]
+@@ -84,1 +83,0 @@
+-		[Conditional("LOGGER_VERBOSE")]
+@@ -93,1 +91,0 @@
+-		[Conditional("LOGGER_VERBOSE")]
+@@ -103,2 +100,0 @@
+-		[Conditional("LOGGER_VERBOSE")]
+-		[Conditional("LOGGER_DEBUG")]
+@@ -109,2 +104,0 @@
+-		[Conditional("LOGGER_DEBUG")]
+-		[Conditional("LOGGER_VERBOSE")]
+@@ -115,2 +108,0 @@
+-		[Conditional("LOGGER_DEBUG")]
+-		[Conditional("LOGGER_VERBOSE")]
+@@ -125,2 +116,0 @@
+-		[Conditional("LOGGER_DEBUG")]
+-		[Conditional("LOGGER_VERBOSE")]
+@@ -136,4 +125,1 @@
+-		[Conditional("LOGGER_WARNING")]
+-		[Conditional("LOGGER_DEBUG")]
+-		[Conditional("LOGGER_VERBOSE")]
+-		public static void LogWarning(string iMessage)
++        public static void LogWarning(string iMessage)
+@@ -143,4 +129,1 @@
+-		[Conditional("LOGGER_DEBUG")]
+-		[Conditional("LOGGER_WARNING")]
+-		[Conditional("LOGGER_VERBOSE")]
+-		public static void LogWarning(string iMessage, bool iFileAndLine)
++        public static void LogWarning(string iMessage, bool iFileAndLine)
+@@ -150,3 +133,0 @@
+-		[Conditional("LOGGER_VERBOSE")]
+-		[Conditional("LOGGER_DEBUG")]
+-		[Conditional("LOGGER_WARNING")]
+@@ -161,3 +141,0 @@
+-		[Conditional("LOGGER_WARNING")]
+-		[Conditional("LOGGER_VERBOSE")]
+-		[Conditional("LOGGER_DEBUG")]
+@@ -173,4 +150,0 @@
+-		[Conditional("LOGGER_VERBOSE")]
+-		[Conditional("LOGGER_DEBUG")]
+-		[Conditional("LOGGER_ERROR")]
+-		[Conditional("LOGGER_WARNING")]
+@@ -181,4 +154,0 @@
+-		[Conditional("LOGGER_ERROR")]
+-		[Conditional("LOGGER_WARNING")]
+-		[Conditional("LOGGER_VERBOSE")]
+-		[Conditional("LOGGER_DEBUG")]
+@@ -189,4 +158,0 @@
+-		[Conditional("LOGGER_ERROR")]
+-		[Conditional("LOGGER_VERBOSE")]
+-		[Conditional("LOGGER_DEBUG")]
+-		[Conditional("LOGGER_WARNING")]
+@@ -201,4 +166,0 @@
+-		[Conditional("LOGGER_VERBOSE")]
+-		[Conditional("LOGGER_WARNING")]
+-		[Conditional("LOGGER_ERROR")]
+-		[Conditional("LOGGER_DEBUG")]
+@@ -214,5 +175,0 @@
+-		[Conditional("LOGGER_WARNING")]
+-		[Conditional("LOGGER_ERROR")]
+-		[Conditional("LOGGER_CRITICAL")]
+-		[Conditional("LOGGER_DEBUG")]
+-		[Conditional("LOGGER_VERBOSE")]
+@@ -223,5 +179,0 @@
+-		[Conditional("LOGGER_CRITICAL")]
+-		[Conditional("LOGGER_ERROR")]
+-		[Conditional("LOGGER_VERBOSE")]
+-		[Conditional("LOGGER_DEBUG")]
+-		[Conditional("LOGGER_WARNING")]
+@@ -232,5 +183,0 @@
+-		[Conditional("LOGGER_DEBUG")]
+-		[Conditional("LOGGER_ERROR")]
+-		[Conditional("LOGGER_CRITICAL")]
+-		[Conditional("LOGGER_VERBOSE")]
+-		[Conditional("LOGGER_WARNING")]
+@@ -245,5 +191,0 @@
+-		[Conditional("LOGGER_WARNING")]
+-		[Conditional("LOGGER_ERROR")]
+-		[Conditional("LOGGER_CRITICAL")]
+-		[Conditional("LOGGER_VERBOSE")]
+-		[Conditional("LOGGER_DEBUG")]
+@@ -272,1 +213,0 @@
+-		[Conditional("DEBUG")]
+@@ -280,1 +220,0 @@
+-		[Conditional("DEBUG")]
