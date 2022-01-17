@@ -11,14 +11,11 @@
 +  </PropertyGroup>
 @@ -23,1 +30,0 @@
 -    <Reference Include="Microsoft.Xna.Framework" />
-@@ -36,1 +42,3 @@
+@@ -36,1 +42,0 @@
 -    <Reference Include="Microsoft.Xna.Framework.Game" />
-+    <Reference Include="Webmilio.Commons">
-+      <HintPath>..\..\Libs\Webmilio.Commons.dll</HintPath>
-+    </Reference>
-@@ -41,1 +49,0 @@
+@@ -41,1 +46,0 @@
 -    <Reference Include="Microsoft.DirectX.DirectInput" />
-@@ -54,0 +61,12 @@
+@@ -54,0 +58,12 @@
 +	<Reference Include="Microsoft.Xna.Framework">
 +      <HintPath>C:\WINDOWS\assembly\GAC_32\Microsoft.Xna.Framework\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.dll</HintPath>
 +    </Reference>
