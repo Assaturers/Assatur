@@ -14,7 +14,7 @@ namespace ModdingToolkit.Diffing
     [Service]
     public class StandardDiffer : IDiffer
     {
-        public const string 
+        public const string
             PatchExtension = ".patch",
             DeleteExtension = ".d",
             CreateExtension = ".c";
@@ -113,37 +113,49 @@ namespace ModdingToolkit.Diffing
 
         private async Task WriteDiffPatch(string destRoot, string file, string content)
         {
-            await WritePatch(Path.Combine(destRoot, file), file,
-                async p => await File.WriteAllTextAsync(p, content));
+            var dst = Path.Combine(destRoot, file);
+
+            await WritePatch(dst, file, dst,
+                async (s, d) => await File.WriteAllTextAsync(s, content));
         }
 
         private async Task WriteCreatePatch(string destRoot, string patchesRoot, string file)
         {
-            await WritePatch(Path.Combine(destRoot, file), file,
-                p => Task.Run(() => File.Copy(p, Path.Combine(patchesRoot, $"{file}{PatchExtension}{CreateExtension}"))));
+            await WritePatch(Path.Combine(destRoot, file), file, Path.Combine(patchesRoot, $"{file}{PatchExtension}{CreateExtension}"),
+                (s, d) => Task.Run(() => File.Copy(s, d)));
         }
 
         private async Task WriteDeletePatch(string patchesRoot, string file)
         {
-            await WritePatch(Path.Combine(patchesRoot, file), file,
-                p => Task.Run(() => File.Create(Path.Combine(patchesRoot, $"{file}{PatchExtension}{DeleteExtension}")).Close()));
+            await WritePatch(Path.Combine(patchesRoot, file), file, Path.Combine(patchesRoot, $"{file}{PatchExtension}{DeleteExtension}"),
+                (s, d) => Task.Run(() => File.Create(d).Close()));
         }
 
-        private static async Task WritePatch(string file, string displayPath, Func<string, Task> action)
+        private static async Task WritePatch(string src, string displayPath, string dest, Func<string, string, Task> action)
         {
             Console.WriteLine("Creating patch {0}... ", displayPath);
 
             try
             {
-                DirectoryInfo patch = new(Path.GetDirectoryName(file));
-                patch.Create();
+                // Find the first directory that exists so that we can create it backwards!
+                // I can't see this going wrong at all 🙂🙂🙂
+                if (dest != null)
+                    ValidateDirectoryPath(new(Path.GetDirectoryName(dest)));
 
-                await action(file);
+                await action(src, dest);
             }
             catch (Exception e)
             {
                 ConsoleHelper.WriteLineError("Failed creating patch for {0}:\n{1}.", displayPath, e);
             }
+        }
+
+        private static void ValidateDirectoryPath(DirectoryInfo dir)
+        {
+            if (!dir.Parent.Exists)
+                ValidateDirectoryPath(dir.Parent);
+
+            dir.Create();
         }
     }
 }
