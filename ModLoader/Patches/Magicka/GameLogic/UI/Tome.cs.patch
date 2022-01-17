@@ -1,0 +1,8 @@
+@@ -1599,2 +1599,5 @@
+-			sVersionText.SetText(Application.ProductVersion);
+-			while (HackHelper.LicenseStatus == HackHelper.Status.Pending)
++
++			// TODO Add reference to ModLoader.
++            sVersionText.SetText($"{Application.ProductVersion} / Assatur InDEV");
++			
++            while (HackHelper.LicenseStatus == HackHelper.Status.Pending)
