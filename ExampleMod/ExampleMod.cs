@@ -7,6 +7,6 @@ public class ExampleMod : Mod
 {
     public override void LoadContent()
     {
-        Logger.Assert(Logger.Source.ModLoader, "First mod loaded!!!!!!");
+        
     }
 }
