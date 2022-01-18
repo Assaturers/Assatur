@@ -1,0 +1,9 @@
+@@ -170,1 +170,1 @@
+-				Logger.LogOrAssert(iConditionMet: false, "Invalid privacy type");
++				Game.Instance.Logger.Assert(Logger.Source.UISystem, "Invalid privacy type");
+@@ -234,2 +234,3 @@
+-			Logger.LogOrAssert(NetworkManager.IsServer, $"Invalid NetworkManager state found : {NetworkManager.Instance.State.ToString()}");
+-			mSelectedItem = ((InGameMenu.sController is KeyboardMouseController) ? (-1) : 0);
++			Game.Instance.Logger.Assert(!NetworkManager.IsServer, Logger.Source.NetworkServer, $"Invalid NetworkManager state found : {NetworkManager.Instance.State}");
++			
++            mSelectedItem = ((InGameMenu.sController is KeyboardMouseController) ? (-1) : 0);

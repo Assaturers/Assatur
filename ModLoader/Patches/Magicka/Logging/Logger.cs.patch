@@ -1,90 +1,427 @@
-@@ -28,0 +28,1 @@
-+			ModLoader,
-@@ -74,1 +75,0 @@
+@@ -1,0 +1,1 @@
++using System;
+@@ -4,1 +5,3 @@
+-namespace Magicka.Logging
++namespace Magicka.Logging;
++
++public class Logger
+@@ -6,279 +9,140 @@
+-	public static class Logger
+-	{
+-		public enum Source
+-		{
+-			Global,
+-			BankSystem,
+-			Cache,
+-			DebugSystem,
+-			DLCHelper,
+-			Encryption,
+-			EventParameter,
+-			GameConsole,
+-			GameSparks,
+-			GameSparksAccount,
+-			GameSparksAuthenticationService,
+-			GameSparksEventService,
+-			GameSparksInventoryService,
+-			GameSparksPropertySetService,
+-			GameSparksServices,
+-			GameSparksStoreService,
+-			HardwareInfoManager,
+-			InventorySystem,
+-			Monetization,
+-			Network,
+-			NetworkClient,
+-			NetworkServer,
+-			ParadoxAccount,
+-			ParadoxAccountGameStartup,
+-			ParadoxAccountPlayerCreate,
+-			ParadoxAccountPlayerLogin,
+-			ParadoxAccountPlayerLogout,
+-			ParadoxAccountSteamLink,
+-			ParadoxAccountSteamUnlink,
+-			ParadoxAccountGameSparksAvailable,
+-			ParadoxPopupUtils,
+-			ParadoxAccountSaveData,
+-			ParadoxAccountSequence,
+-			ParadoxOPS,
+-			ParadoxServices,
+-			Player,
+-			PlayerSegmentManager,
+-			PlayState,
+-			Privacy,
+-			SocialEvents,
+-			Spritesheet,
+-			SteamWebAPI,
+-			Store,
+-			TutorialUtils,
+-			Threads,
+-			UISystem
+-		}
+-
+-		private const string VERBOSE_PREFIXED_FORMAT = "[{0}] {1}";
+-
+-		private const string DEBUG_PREFIXED_FORMAT = "[{0}] DEBUG : {1}";
+-
+-		private const string WARNING_PREFIXED_FORMAT = "[{0}] WARNING : {1}";
+-
+-		private const string ERROR_PREFIXED_FORMAT = "[{0}] ERROR : {1}";
+-
+-		private const string CRITICAL_PREFIXED_FORMAT = "[{0}] CRITICAL : {1}";
+-
+-		private const string ASSERT_PREFIXED_FORMAT = "[{0}] ASSERT : {1}";
+-
+-		private const string FILE_AND_LINE_FORMAT = "In File {0} ({1})";
+-
+-		private static readonly List<Source> sWhiteList = new List<Source> { Source.Global };
+-
 -		[Conditional("LOGGER_VERBOSE")]
-@@ -79,1 +79,0 @@
+-		public static void LogVerbose(string iMessage)
+-		{
+-		}
+-
 -		[Conditional("LOGGER_VERBOSE")]
-@@ -84,1 +83,0 @@
+-		public static void LogVerbose(string iMessage, bool iFileAndLine)
+-		{
+-		}
+-
 -		[Conditional("LOGGER_VERBOSE")]
-@@ -93,1 +91,0 @@
+-		public static void LogVerbose(Source iSource, string iMessage)
+-		{
+-			if (sWhiteList.Contains(iSource))
+-			{
+-				_ = $"[{iSource.ToString()}] {iMessage}";
+-			}
+-		}
+-
 -		[Conditional("LOGGER_VERBOSE")]
-@@ -103,2 +100,0 @@
+-		public static void LogVerbose(Source iSource, string iMessage, bool iFileAndLine)
+-		{
+-			if (sWhiteList.Contains(iSource))
+-			{
+-				string arg = iSource.ToString();
+-				_ = $"[{arg}] {iMessage}";
+-			}
+-		}
+-
 -		[Conditional("LOGGER_VERBOSE")]
 -		[Conditional("LOGGER_DEBUG")]
-@@ -109,2 +104,0 @@
+-		public static void LogDebug(string iMessage)
+-		{
+-		}
+-
 -		[Conditional("LOGGER_DEBUG")]
 -		[Conditional("LOGGER_VERBOSE")]
-@@ -115,2 +108,0 @@
+-		public static void LogDebug(string iMessage, bool iFileAndLine)
+-		{
+-		}
+-
 -		[Conditional("LOGGER_DEBUG")]
 -		[Conditional("LOGGER_VERBOSE")]
-@@ -125,2 +116,0 @@
+-		public static void LogDebug(Source iSource, string iMessage)
+-		{
+-			if (sWhiteList.Contains(iSource))
+-			{
+-				_ = $"[{iSource.ToString()}] DEBUG : {iMessage}";
+-			}
+-		}
+-
 -		[Conditional("LOGGER_DEBUG")]
 -		[Conditional("LOGGER_VERBOSE")]
-@@ -136,4 +125,1 @@
+-		public static void LogDebug(Source iSource, string iMessage, bool iFileAndLine)
+-		{
+-			if (sWhiteList.Contains(iSource))
+-			{
+-				string arg = iSource.ToString();
+-				_ = $"[{arg}] DEBUG : {iMessage}";
+-			}
+-		}
+-
 -		[Conditional("LOGGER_WARNING")]
 -		[Conditional("LOGGER_DEBUG")]
 -		[Conditional("LOGGER_VERBOSE")]
 -		public static void LogWarning(string iMessage)
-+        public static void LogWarning(string iMessage)
-@@ -143,4 +129,1 @@
+-		{
+-		}
+-
 -		[Conditional("LOGGER_DEBUG")]
 -		[Conditional("LOGGER_WARNING")]
 -		[Conditional("LOGGER_VERBOSE")]
 -		public static void LogWarning(string iMessage, bool iFileAndLine)
-+        public static void LogWarning(string iMessage, bool iFileAndLine)
-@@ -150,3 +133,0 @@
+-		{
+-		}
+-
 -		[Conditional("LOGGER_VERBOSE")]
 -		[Conditional("LOGGER_DEBUG")]
 -		[Conditional("LOGGER_WARNING")]
-@@ -161,3 +141,0 @@
+-		public static void LogWarning(Source iSource, string iMessage)
+-		{
+-			if (sWhiteList.Contains(iSource))
+-			{
+-				_ = $"[{iSource.ToString()}] WARNING : {iMessage}";
+-			}
+-		}
+-
 -		[Conditional("LOGGER_WARNING")]
 -		[Conditional("LOGGER_VERBOSE")]
 -		[Conditional("LOGGER_DEBUG")]
-@@ -173,4 +150,0 @@
+-		public static void LogWarning(Source iSource, string iMessage, bool iFileAndLine)
+-		{
+-			if (sWhiteList.Contains(iSource))
+-			{
+-				string arg = iSource.ToString();
+-				_ = $"[{arg}] WARNING : {iMessage}";
+-			}
+-		}
+-
 -		[Conditional("LOGGER_VERBOSE")]
 -		[Conditional("LOGGER_DEBUG")]
 -		[Conditional("LOGGER_ERROR")]
 -		[Conditional("LOGGER_WARNING")]
-@@ -181,4 +154,0 @@
+-		public static void LogError(string iMessage)
+-		{
+-		}
+-
 -		[Conditional("LOGGER_ERROR")]
 -		[Conditional("LOGGER_WARNING")]
 -		[Conditional("LOGGER_VERBOSE")]
 -		[Conditional("LOGGER_DEBUG")]
-@@ -189,4 +158,0 @@
+-		public static void LogError(string iMessage, bool iFileAndLine)
+-		{
+-		}
+-
 -		[Conditional("LOGGER_ERROR")]
 -		[Conditional("LOGGER_VERBOSE")]
 -		[Conditional("LOGGER_DEBUG")]
 -		[Conditional("LOGGER_WARNING")]
-@@ -201,4 +166,0 @@
+-		public static void LogError(Source iSource, string iMessage)
+-		{
+-			if (sWhiteList.Contains(iSource))
+-			{
+-				_ = $"[{iSource.ToString()}] ERROR : {iMessage}";
+-			}
+-		}
+-
 -		[Conditional("LOGGER_VERBOSE")]
 -		[Conditional("LOGGER_WARNING")]
 -		[Conditional("LOGGER_ERROR")]
 -		[Conditional("LOGGER_DEBUG")]
-@@ -214,5 +175,0 @@
+-		public static void LogError(Source iSource, string iMessage, bool iFileAndLine)
+-		{
+-			if (sWhiteList.Contains(iSource))
+-			{
+-				string arg = iSource.ToString();
+-				_ = $"[{arg}] ERROR : {iMessage}";
+-			}
+-		}
+-
 -		[Conditional("LOGGER_WARNING")]
 -		[Conditional("LOGGER_ERROR")]
 -		[Conditional("LOGGER_CRITICAL")]
 -		[Conditional("LOGGER_DEBUG")]
 -		[Conditional("LOGGER_VERBOSE")]
-@@ -223,5 +179,0 @@
+-		public static void LogCritical(string iMessage)
+-		{
+-		}
+-
 -		[Conditional("LOGGER_CRITICAL")]
 -		[Conditional("LOGGER_ERROR")]
 -		[Conditional("LOGGER_VERBOSE")]
 -		[Conditional("LOGGER_DEBUG")]
 -		[Conditional("LOGGER_WARNING")]
-@@ -232,5 +183,0 @@
+-		public static void LogCritical(string iMessage, bool iFileAndLine)
+-		{
+-		}
+-
 -		[Conditional("LOGGER_DEBUG")]
 -		[Conditional("LOGGER_ERROR")]
 -		[Conditional("LOGGER_CRITICAL")]
 -		[Conditional("LOGGER_VERBOSE")]
 -		[Conditional("LOGGER_WARNING")]
-@@ -245,5 +191,0 @@
+-		public static void LogCritical(Source iSource, string iMessage)
+-		{
+-			if (sWhiteList.Contains(iSource))
+-			{
+-				_ = $"[{iSource.ToString()}] CRITICAL : {iMessage}";
+-			}
+-		}
+-
 -		[Conditional("LOGGER_WARNING")]
 -		[Conditional("LOGGER_ERROR")]
 -		[Conditional("LOGGER_CRITICAL")]
 -		[Conditional("LOGGER_VERBOSE")]
 -		[Conditional("LOGGER_DEBUG")]
-@@ -272,1 +213,0 @@
+-		public static void LogCritical(Source iSource, string iMessage, bool iFileAndLine)
+-		{
+-			if (sWhiteList.Contains(iSource))
+-			{
+-				string arg = iSource.ToString();
+-				_ = $"[{arg}] CRITICAL : {iMessage}";
+-			}
+-		}
+-
+-		public static void LogOrAssert(bool iConditionMet, string iMessage)
+-		{
+-			LogOrAssert(Source.Global, iConditionMet, iMessage);
+-		}
+-
+-		public static void LogOrAssert(Source iSource, bool iConditionMet, string iMessage)
+-		{
+-			if (!iConditionMet)
+-			{
+-				sWhiteList.Contains(iSource);
+-			}
+-		}
+-
 -		[Conditional("DEBUG")]
-@@ -280,1 +220,0 @@
+-		private static void PrintFileAndLine(string iPrefix)
+-		{
+-			StackTrace stackTrace = new StackTrace(new StackFrame(fNeedFileInfo: true));
+-			StackFrame frame = stackTrace.GetFrame(2);
+-			_ = $"In File {frame.GetFileName()} ({frame.GetFileLineNumber()})";
+-		}
+-
 -		[Conditional("DEBUG")]
+-		public static void WriteToFile(string iLineOfText)
+-		{
+-		}
+-	}
++    private Logger(string owner)
++    {
++        Owner = owner;
++    }
++
++    public void Debug(Source source, string message) => Log(LogLevel.Debug, source, message);
++    public void Finest(Source source, string message) => Log(LogLevel.Finest, source, message);
++    public void Fine(Source source, string message) => Log(LogLevel.Fine, source, message);
++    public void Info(Source source, string message) => Log(LogLevel.Info, source, message);
++    public void Log(Source source, string message) => Log(LogLevel.Log, source, message);
++    public void Warning(Source source, string message) => Log(LogLevel.Warning, source, message);
++
++    public void Severe(Source source, string message) =>
++        Log(LogLevel.Severe, source, $"{message}");
++    public void Severe(Source source, string message, Exception exception) =>
++        Log(LogLevel.Severe, source, $"{message}:\n{exception}");
++
++    public void Critical(Source source, Exception exception) => Critical(source, null, exception);
++
++    public void Critical(Source source, string message, Exception exception)
++    {
++        Log(LogLevel.Critical, source, string.IsNullOrWhiteSpace(message) ? "" : $"{message}:");
++    }
++
++    public void Log(Func<bool> predicate, LogLevel level, Source source, string message) =>
++        Log(predicate(), level, source, message);
++
++    public void Log(bool condition, LogLevel level, Source source, string message)
++    {
++        if (condition)
++            Log(level, source, message);
++    }
++
++    public void Log(LogLevel level, Source source, string message) => Log(FormatLine(level, source, message));
++
++    private void Log(string line)
++    {
++        System.Diagnostics.Debug.WriteLine(line);
++    }
++
++    public void Assert(Func<bool> predicate, Source source, string message, Exception exception = null) =>
++        Assert(predicate(), source, message, exception);
++
++    public void Assert(bool condition, Source source, string message, Exception exception = null)
++    {
++        if (!condition)
++            Assert(source, message, exception);
++    }
++
++    public void Assert(Source source, string message, Exception exception = null)
++    {
++        if (exception != null)
++            message += $":\n{exception}";
++
++        var line = FormatLine(LogLevel.Critical, source, message);
++        
++        Log(line);
++        System.Diagnostics.Debug.Assert(false, line);
++    }
++
++    private string FormatLine(LogLevel level, Source source, string message) =>
++        $"[{DateTime.Now:HH:mm:ss.fff}] [{level}][{Owner}/{source}]: {message}";
++
++    public static Logger GetLogger<T>() => GetLogger(typeof(T));
++    public static Logger GetLogger(Type type) => GetLogger(type.Name);
++
++    public static Logger GetLogger(string owner) => new(owner);
++
++    public string Owner { get; }
++
++    public LogLevel Level { get; set; }
++
++    // TODO Maybe make this into a string instead of set values.
++    public enum Source
++    {
++        None,
++        Global,
++        Avatar,
++        BankSystem,
++        Cache,
++        Character,
++        DebugSystem,
++        DLCHelper,
++        Encryption,
++        EventParameter,
++        GameConsole,
++        GameSparks,
++        GameSparksAccount,
++        GameSparksAuthenticationService,
++        GameSparksEventService,
++        GameSparksInventoryService,
++        GameSparksPropertySetService,
++        GameSparksServices,
++        GameSparksStoreService,
++        HardwareInfoManager,
++        InventorySystem,
++        Levels,
++        LevelLoading,
++        ModLoader,
++        Monetization,
++        Network,
++        NetworkClient,
++        NetworkServer,
++        ParadoxAccount,
++        ParadoxAccountGameStartup,
++        ParadoxAccountPlayerCreate,
++        ParadoxAccountPlayerLogin,
++        ParadoxAccountPlayerLogout,
++        ParadoxAccountSteamLink,
++        ParadoxAccountSteamUnlink,
++        ParadoxAccountGameSparksAvailable,
++        ParadoxPopupUtils,
++        ParadoxAccountSaveData,
++        ParadoxAccountSequence,
++        ParadoxOPS,
++        ParadoxServices,
++        Player,
++        PlayerSegmentManager,
++        PlayState,
++        Privacy,
++        SocialEvents,
++        Spritesheet,
++        SteamWebAPI,
++        Store,
++        TutorialUtils,
++        Threads,
++        UISystem
++    }
++
++    public enum LogLevel
++    {
++        Debug,
++        Finest,
++        Fine,
++        Info,
++        Log,
++        Warning,
++        Severe,
++        Critical
++    }

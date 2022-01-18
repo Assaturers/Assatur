@@ -1,0 +1,5 @@
+@@ -73,2 +73,2 @@
+-			bool iConditionMet = sSpritesheets.TryGetValue(Singleton<TaggedAssetManager>.Instance.GetTaggedFileName(iName), out value);
+-			Logger.LogOrAssert(iConditionMet, $"Could not find {iName}");
++            Game.Instance.Logger.Assert(sSpritesheets.TryGetValue(Singleton<TaggedAssetManager>.Instance.GetTaggedFileName(iName), out value), LOGGER_SOURCE, $"Could not find {iName}");
++

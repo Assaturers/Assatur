@@ -1,0 +1,13 @@
+@@ -459,1 +459,1 @@
+-				Logger.LogOrAssert(iConditionMet: false, "default purchase flow not implemented");
++                Game.Instance.Logger.Assert(Logger.Source.Store, "default purchase flow not implemented");
+@@ -497,1 +497,1 @@
+-				Logger.LogOrAssert(iConditionMet: false, "default purchase flow not implemented");
++                Game.Instance.Logger.Assert(Logger.Source.Store, "default purchase flow not implemented");
+@@ -510,1 +510,2 @@
+-			Logger.LogOrAssert(mStoreSource == StoreSource.Steam, "OpenSteamCart only valid for steam items");
++            Game.Instance.Logger.Assert(mStoreSource == StoreSource.Steam, Logger.Source.Store, "OpenSteamCart only valid for steam items");
++
+@@ -595,1 +596,1 @@
+-			Logger.LogOrAssert(mStoreSource == StoreSource.Steam, "OpenSteamStorePage only valid for steam items");
++            Game.Instance.Logger.Assert(mStoreSource == StoreSource.Steam, Logger.Source.Store, "OpenSteamStorePage only valid for steam items");

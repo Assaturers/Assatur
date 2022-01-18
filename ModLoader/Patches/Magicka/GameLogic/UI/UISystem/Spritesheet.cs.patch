@@ -1,0 +1,16 @@
+@@ -63,2 +63,3 @@
+-			Logger.LogOrAssert(!string.IsNullOrEmpty(iFilename), "Cannot create a spritesheet from an empty filename.");
+-			Logger.LogOrAssert(File.Exists(iFilename), $"The filename {iFilename} cannot be found.");
++            Game.Instance.Logger.Assert(!string.IsNullOrEmpty(iFilename), Logger.Source.Spritesheet, "Cannot create a spritesheet from an empty filename.");
++            Game.Instance.Logger.Assert(File.Exists(iFilename), Logger.Source.Spritesheet, $"The filename {iFilename} cannot be found.");
++
+@@ -78,1 +79,1 @@
+-					Logger.LogOrAssert(iConditionMet: false, $"Trying to get sprite {iSpriteName} from not loaded spritesheet {mName}");
++                    Game.Instance.Logger.Assert(Logger.Source.Spritesheet, $"Trying to get sprite {iSpriteName} from not loaded spritesheet {mName}");
+@@ -81,0 +82,1 @@
++
+@@ -82,2 +84,2 @@
+-			bool iConditionMet = TryGetSprite(iSpriteName, out oSprite);
+-			Logger.LogOrAssert(iConditionMet, $"Could not find sprite {iSpriteName}");
++            Game.Instance.Logger.Assert(TryGetSprite(iSpriteName, out oSprite), Logger.Source.Spritesheet, $"Could not find sprite {iSpriteName}");
++

@@ -1,0 +1,6 @@
+@@ -48,2 +48,3 @@
+-			Logger.LogOrAssert(Logger.Source.Monetization, iReceipt != null, "Cannot push a null receipt.");
+-			Logger.LogOrAssert(Logger.Source.Monetization, iReceipt.IsValid, "Cannot push an invalid receipt.");
++            Game.Instance.Logger.Assert(iReceipt != null, LOGGER_SOURCE, "Cannot push a null receipt.");
++            Game.Instance.Logger.Assert(iReceipt.IsValid, LOGGER_SOURCE, "Cannot push an invalid receipt.");
++

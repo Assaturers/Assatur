@@ -1,0 +1,24 @@
+@@ -47,1 +47,2 @@
+-			Logger.LogOrAssert(Logger.Source.GameSparksEventService, !string.IsNullOrEmpty(iEventKey), "Event name cannot be null or empty.");
++            Game.Instance.Logger.Assert(!string.IsNullOrEmpty(iEventKey), Logger.Source.GameSparksEventService, "Event name cannot be null or empty.");
++
+@@ -59,3 +60,4 @@
+-			Logger.LogOrAssert(Logger.Source.GameSparksEventService, !string.IsNullOrEmpty(iEventKey), "Event name cannot be null or empty.");
+-			Logger.LogOrAssert(Logger.Source.GameSparksEventService, iAttributes != null, "Event attributes array cannot be null.");
+-			Logger.LogOrAssert(Logger.Source.GameSparksEventService, iAttributes.Length % 2 == 0, "Attributes array have an odd number of elements.");
++            Game.Instance.Logger.Assert(!string.IsNullOrEmpty(iEventKey), Logger.Source.GameSparksEventService, "Event name cannot be null or empty.");
++            Game.Instance.Logger.Assert(iAttributes != null, Logger.Source.GameSparksEventService, "Event attributes array cannot be null.");
++            Game.Instance.Logger.Assert(iAttributes.Length % 2 == 0, Logger.Source.GameSparksEventService, "Attributes array have an odd number of elements.");
++
+@@ -73,3 +75,5 @@
+-						Logger.LogOrAssert(Logger.Source.GameSparksEventService, obj != null, "Attribute name cannot be null.");
+-						Logger.LogOrAssert(Logger.Source.GameSparksEventService, obj is string, "Attribute name must be a string.");
+-						Logger.LogOrAssert(Logger.Source.GameSparksEventService, obj2 != null, "Attribute value cannot be null");
++
++                        Game.Instance.Logger.Assert(obj != null, Logger.Source.GameSparksEventService, "Attribute name cannot be null.");
++                        Game.Instance.Logger.Assert(obj is string, Logger.Source.GameSparksEventService, "Attribute name must be a string.");
++                        Game.Instance.Logger.Assert(obj2 != null, Logger.Source.GameSparksEventService, "Attribute value cannot be null");
++
+@@ -111,1 +115,1 @@
+-							Logger.LogOrAssert(Logger.Source.GameSparksEventService, iConditionMet: false, $"Value of attribute {text} is of an unsupported type {obj2.GetType().ToString()}.");
++                            Game.Instance.Logger.Assert(Logger.Source.GameSparksEventService, $"Value of attribute {text} is of an unsupported type {obj2.GetType()}.");

@@ -1,0 +1,4 @@
+@@ -302,1 +302,2 @@
+-			Logger.LogOrAssert(sInstance == null, "Instance of the Storefront already exists");
++            Game.Instance.Logger.Assert(sInstance == null, Logger.Source.Store, "Instance of the Storefront already exists");
++

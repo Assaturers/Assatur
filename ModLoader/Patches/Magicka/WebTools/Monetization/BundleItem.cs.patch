@@ -1,0 +1,6 @@
+@@ -19,2 +19,3 @@
+-			Logger.LogOrAssert(Logger.Source.Monetization, !string.IsNullOrEmpty(iShortCode), "A bundle item must have a short code.");
+-			Logger.LogOrAssert(Logger.Source.Monetization, iQuantity > 0, "Cannot have a bundle item with 0 as quantity.");
++            Game.Instance.Logger.Assert(!string.IsNullOrEmpty(iShortCode), LOGGER_SOURCE, "A bundle item must have a short code.");
++            Game.Instance.Logger.Assert(iQuantity != 0, LOGGER_SOURCE, "Cannot have a bundle item with 0 as quantity.");
++

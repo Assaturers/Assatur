@@ -1,0 +1,14 @@
+@@ -507,1 +507,1 @@
+-				Logger.LogOrAssert(Logger.Source.UISystem, mParent != null, $"Widget {mName} doesn't have a parent.");
++                Game.Instance.Logger.Assert(mParent != null, LOGGER_SOURCE, $"Widget {mName} doesn't have a parent.");
+@@ -512,1 +512,1 @@
+-				Logger.LogOrAssert(Logger.Source.UISystem, mParent != null, $"Widget {mName} doesn't have a parent.");
++                Game.Instance.Logger.Assert(mParent != null, LOGGER_SOURCE, $"Widget {mName} doesn't have a parent.");
+@@ -580,1 +580,2 @@
+-				Logger.LogOrAssert(Logger.Source.UISystem, mParent != null, $"Widget {mName} doesn't have a parent.");
++                Game.Instance.Logger.Assert(mParent != null, LOGGER_SOURCE, $"Widget {mName} doesn't have a parent.");
++
+@@ -951,1 +952,2 @@
+-				Logger.LogOrAssert(Logger.Source.UISystem, !mChildren.Contains(iChild), $"Trying to add an existing child {iChild.mName} to the same parent {mName}");
++                Game.Instance.Logger.Assert(!mChildren.Contains(iChild), LOGGER_SOURCE, $"Trying to add an existing child {iChild.mName} to the same parent {mName}");
++

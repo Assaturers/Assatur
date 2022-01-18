@@ -1,0 +1,6 @@
+@@ -65,2 +65,3 @@
+-				Logger.LogOrAssert((float)iTexture.Width > 0f, $"The passed texture \"{iTexture.Name}\" have a width of zero.");
+-				Logger.LogOrAssert((float)iTexture.Height > 0f, $"The passed texture \"{iTexture.Name}\" have a height of zero.");
++                Game.Instance.Logger.Assert(iTexture.Width > 0f, Logger.Source.Spritesheet, $"The passed texture \"{iTexture.Name}\" has a width of zero.");
++                Game.Instance.Logger.Assert(iTexture.Height > 0f, Logger.Source.Spritesheet, $"The passed texture \"{iTexture.Name}\" has a height of zero.");
++

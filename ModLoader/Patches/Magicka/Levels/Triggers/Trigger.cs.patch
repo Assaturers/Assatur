@@ -1,0 +1,3 @@
+@@ -268,1 +268,1 @@
+-							Logger.LogOrAssert(iConditionMet: false, "Invalid trigger repeat value found");
++                            Game.Instance.Logger.Assert(Logger.Source.LevelLoading, "Invalid trigger repeat value found");

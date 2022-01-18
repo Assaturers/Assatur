@@ -1,0 +1,3 @@
+@@ -105,1 +105,1 @@
+-				Logger.LogOrAssert(iConditionMet: false, $"Ad Banner Click Action {mCurrentPromotionInfo.OnClickAction.ToString()} Undefined For {mCurrentPromotionInfo.Name}");
++                Game.Instance.Logger.Assert(Logger.Source.UISystem, $"Ad Banner Click Action {mCurrentPromotionInfo.OnClickAction} Undefined For {mCurrentPromotionInfo.Name}");

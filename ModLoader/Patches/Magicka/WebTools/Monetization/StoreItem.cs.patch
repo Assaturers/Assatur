@@ -1,0 +1,4 @@
+@@ -61,1 +61,2 @@
+-			Logger.LogOrAssert(Logger.Source.Monetization, iType != ItemType.Undefined, "The store item is undefined ! Must be either a virtual good or a currency pack.");
++            Game.Instance.Logger.Assert(iType != ItemType.Undefined, LOGGER_SOURCE, "The store item is undefined ! Must be either a virtual good or a currency pack.");
++

@@ -1,0 +1,6 @@
+@@ -20,2 +20,3 @@
+-			Logger.LogOrAssert(Logger.Source.Monetization, !string.IsNullOrEmpty(iShortCode), "An inventory item must have a short code.");
+-			Logger.LogOrAssert(Logger.Source.Monetization, iQuantity != 0, "An item transaction cannot have 0 as quantity.");
++            Game.Instance.Logger.Assert(!string.IsNullOrEmpty(iShortCode), LOGGER_SOURCE, "An inventory item must have a short code.");
++            Game.Instance.Logger.Assert(iQuantity != 0, LOGGER_SOURCE, "An item transaction cannot have 0 as quantity.");
++

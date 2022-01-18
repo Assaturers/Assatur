@@ -1,0 +1,3 @@
+@@ -50,1 +50,1 @@
+-			Logger.LogOrAssert(Logger.Source.Encryption, iV.Length <= 16, "The generated IV size is more than 16 bytes.");
++            Game.Instance.Logger.Assert(iV.Length <= 16, LOGGER_SOURCE, "The generated IV size is more than 16 bytes.");

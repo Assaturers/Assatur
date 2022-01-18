@@ -1,0 +1,5 @@
+@@ -692,1 +692,3 @@
+-				Logger.LogOrAssert(result != null, "Unable to find a valid player avatar.");
++
++				// TODO Check if this can be removed because I think we can optimize away the IF.
++				Game.Instance.Logger.Assert(result != null, Logger.Source.Avatar, "Unable to find a valid player avatar.");

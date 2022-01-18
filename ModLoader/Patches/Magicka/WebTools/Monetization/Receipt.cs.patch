@@ -1,0 +1,6 @@
+@@ -69,2 +69,3 @@
+-			Logger.LogOrAssert(Logger.Source.Monetization, !string.IsNullOrEmpty(iShortCode), "Cannot have a receipt without any short code.");
+-			Logger.LogOrAssert(Logger.Source.Monetization, iQuantity > 0, "Cannot have a receipt for an empty transaction.");
++            Game.Instance.Logger.Assert(!string.IsNullOrEmpty(iShortCode), LOGGER_SOURCE, "Cannot have a receipt without any short code.");
++            Game.Instance.Logger.Assert(iQuantity != 0, LOGGER_SOURCE, "Cannot have a receipt for an empty transaction.");
++

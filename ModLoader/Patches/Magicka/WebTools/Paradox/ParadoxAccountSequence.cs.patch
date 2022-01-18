@@ -1,0 +1,4 @@
+@@ -84,1 +84,2 @@
+-			Logger.LogOrAssert(Logger.Source.ParadoxAccountSequence, mRequestTimeoutTimer == null, string.Format(ASSERT_TIMER_NOT_NULL, mCurrentPhase.ToString()));
++            Game.Instance.Logger.Assert(mRequestTimeoutTimer == null, Logger.Source.ParadoxAccountSequence, string.Format(ASSERT_TIMER_NOT_NULL, mCurrentPhase.ToString()));
++

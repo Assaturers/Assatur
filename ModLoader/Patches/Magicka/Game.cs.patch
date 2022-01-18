@@ -1,6 +1,14 @@
-@@ -357,0 +357,1 @@
+@@ -23,0 +23,1 @@
++using Magicka.Logging;
+@@ -261,0 +262,5 @@
++			Logger = Logger.GetLogger<Game>();
++			Logger.Log(Logger.Source.Global, "Initialized Logger.");
 +
-@@ -358,1 +359,7 @@
++			Logger.Assert(Logger.Source.Encryption, "Test message with exception!", new("Alainx likes JavaScript."));
++
+@@ -357,0 +363,1 @@
++
+@@ -358,1 +365,7 @@
 -			string currentGameLanguage = SteamApps.GetCurrentGameLanguage();
 +
 +            if (string.IsNullOrWhiteSpace(steamGameLanguage))
@@ -9,7 +17,10 @@
 +            string currentGameLanguage = steamGameLanguage;
 +            // TODO Add this back: string currentGameLanguage = SteamApps.GetCurrentGameLanguage();
 +
-@@ -364,1 +371,2 @@
+@@ -364,1 +377,2 @@
 +			
 -			LanguageManager.Instance.SetLanguage(GlobalSettings.Instance.Language);
 +            LanguageManager.Instance.SetLanguage(GlobalSettings.Instance.Language);
+@@ -749,0 +763,2 @@
++
++		public Logger Logger { get; }

@@ -1,0 +1,5 @@
+@@ -156,2 +156,2 @@
+-				Logger.LogOrAssert(iConditionMet: false, "The buffs icon name is missing or empty");
+-			}
++				Game.Instance.Logger.Severe(Logger.Source.Global, "The buffs icon name is missing or empty");
++            }

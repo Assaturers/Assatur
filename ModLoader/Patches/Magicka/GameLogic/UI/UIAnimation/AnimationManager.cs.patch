@@ -1,0 +1,6 @@
+@@ -221,1 +221,1 @@
+-			Logger.LogOrAssert(!sClips.ContainsKey(iClip.Name), $"Duplicate clip found with name {iClip.Name}");
++            Game.Instance.Logger.Assert(!sClips.ContainsKey(iClip.Name), Logger.Source.UISystem, $"Duplicate clip found with name {iClip.Name}");
+@@ -228,1 +228,1 @@
+-			Logger.LogOrAssert(sClips.TryGetValue(iName, out value), $"Could not find clip with name {iName}");
++            Game.Instance.Logger.Assert(sClips.TryGetValue(iName, out value), Logger.Source.UISystem, $"Could not find clip with name {iName}");

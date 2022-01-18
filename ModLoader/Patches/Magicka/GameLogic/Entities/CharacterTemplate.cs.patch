@@ -1,0 +1,4 @@
+@@ -411,1 +411,2 @@
+-				Logger.LogOrAssert(characterTemplate != null, $"Failed to load file {text}");
++
++                Game.Instance.Logger.Assert(characterTemplate != null, Logger.Source.Character, $"Failed to load file {text}");

@@ -1,0 +1,3 @@
+@@ -67,1 +67,1 @@
+-			Logger.LogOrAssert(iTime >= 0f, "A keyframe cannot have a negative time");
++            Game.Instance.Logger.Assert(iTime >= 0f, Logger.Source.UISystem, "A keyframe cannot have a negative time");

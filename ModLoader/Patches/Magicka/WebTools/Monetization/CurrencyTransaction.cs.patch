@@ -1,0 +1,13 @@
+@@ -18,1 +18,1 @@
+-		public CurrencyTransaction(Currency iCurrency, long iAmount)
++		public CurrencyTransaction(Currency currency, long amount)
+@@ -20,4 +20,5 @@
+-			Logger.LogOrAssert(Logger.Source.Monetization, iCurrency != Currency.Unknown, "A currency transaction need a known currency.");
+-			Logger.LogOrAssert(Logger.Source.Monetization, iCurrency != Currency.NumCurrency, "A currency transaction can't take NumCurrency as currency !");
+-			Currency = iCurrency;
+-			Amount = iAmount;
++            Game.Instance.Logger.Assert(currency != Currency.Unknown, Logger.Source.Monetization, "A currency transaction need a known currency.");
++            Game.Instance.Logger.Assert(currency != Currency.NumCurrency, Logger.Source.Monetization, "A currency transaction can't take NumCurrency as currency !");
++
++			Currency = currency;
++			Amount = amount;

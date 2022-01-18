@@ -1,0 +1,8 @@
+@@ -100,1 +100,2 @@
+-			Logger.LogOrAssert(mThreadStart != null, "The Start method didn't received parameters, but the set method expect one.");
++            Game.Instance.Logger.Assert(mThreadStart != null, Logger.Source.Threads, ASSERT_MISSING_PARAMETERIZED_START_METHOD);
++
+@@ -110,1 +111,2 @@
+-			Logger.LogOrAssert(mParametherizedThreadStart != null, "The Start method received parameter, but the set method doesn't support parameter.");
++            Game.Instance.Logger.Assert(mParametherizedThreadStart != null, Logger.Source.Threads, ASSERT_MISSING_PARAMETERLESS_START_METHOD);
++

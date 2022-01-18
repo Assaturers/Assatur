@@ -1,0 +1,8 @@
+@@ -223,1 +223,1 @@
+-				Logger.LogOrAssert(iConditionMet: false, "The store database is empty or missing.");
++				Game.Instance.Logger.Assert(LOGGER_SOURCE, "The store database is missing.");
+@@ -225,1 +225,3 @@
+-			Logger.LogOrAssert(!string.IsNullOrEmpty(text), "The store database is empty or missing.");
++
++            Game.Instance.Logger.Assert(!string.IsNullOrWhiteSpace(text), LOGGER_SOURCE, "The store database is empty.");
++
