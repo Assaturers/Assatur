@@ -5,7 +5,7 @@
 +namespace Magicka.Logging;
 +
 +public class Logger
-@@ -6,279 +9,140 @@
+@@ -6,279 +9,161 @@
 -	public static class Logger
 -	{
 -		public enum Source
@@ -307,6 +307,7 @@
 +    public void Critical(Source source, string message, Exception exception)
 +    {
 +        Log(LogLevel.Critical, source, string.IsNullOrWhiteSpace(message) ? "" : $"{message}:");
++        throw exception;
 +    }
 +
 +    public void Log(Func<bool> predicate, LogLevel level, Source source, string message) =>
@@ -318,11 +319,31 @@
 +            Log(level, source, message);
 +    }
 +
-+    public void Log(LogLevel level, Source source, string message) => Log(FormatLine(level, source, message));
++    public void Log(LogLevel level, Source source, string message)
++    {
++        if (level < Level)
++            return;
++
++        var line = FormatLine(level, source, message);
++
++        if (level == LogLevel.Critical)
++            LogError(line);
++        else 
++            Log(line);
++    }
 +
 +    private void Log(string line)
 +    {
 +        System.Diagnostics.Debug.WriteLine(line);
++        Console.WriteLine(line);
++    }
++
++    private void LogError(string line)
++    {
++        System.Diagnostics.Debug.WriteLine(line);
++
++        Console.Error.WriteLine(line);
++        Console.Error.Flush();
 +    }
 +
 +    public void Assert(Func<bool> predicate, Source source, string message, Exception exception = null) =>
@@ -341,7 +362,7 @@
 +
 +        var line = FormatLine(LogLevel.Critical, source, message);
 +        
-+        Log(line);
++        LogError(line);
 +        System.Diagnostics.Debug.Assert(false, line);
 +    }
 +
