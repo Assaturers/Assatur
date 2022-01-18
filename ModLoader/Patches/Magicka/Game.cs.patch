@@ -2,9 +2,9 @@
 +using Magicka.Logging;
 @@ -261,0 +262,5 @@
 +			Logger = Logger.GetLogger<Game>();
-+			Logger.Log(Logger.Source.Global, "Initialized Logger.");
++			Logger.Log(Logger.Source.Global, "Initializing Game.");
 +
-+			Logger.Assert(Logger.Source.Encryption, "Test message with exception!", new("Alainx likes JavaScript."));
++            ModLoader = new();
 +
 @@ -357,0 +363,1 @@
 +
@@ -21,6 +21,11 @@
 +			
 -			LanguageManager.Instance.SetLanguage(GlobalSettings.Instance.Language);
 +            LanguageManager.Instance.SetLanguage(GlobalSettings.Instance.Language);
-@@ -749,0 +763,2 @@
+@@ -435,0 +449,2 @@
 +
-+		public Logger Logger { get; }
++			ModLoader.LoadContent();
+@@ -749,0 +765,4 @@
++
++		internal Logger Logger { get; }
++
++		internal ModLoader.ModLoader ModLoader { get; }
