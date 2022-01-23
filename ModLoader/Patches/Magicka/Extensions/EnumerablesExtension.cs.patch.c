@@ -5,6 +5,15 @@ namespace Magicka.Extensions;
 
 public static class EnumerablesExtension
 {
+    public static bool TrueForAll<T>(this T[] source, Predicate<T> predicate)
+    {
+        for (int i = 0; i < source.Length; i++)
+            if (!predicate(source[i]))
+                return false;
+
+        return true;
+    }
+
     public static void Do<T>(this IList<T> source, Action<T> action)
     {
         for (int i = 0; i < source.Count; i++)
