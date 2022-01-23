@@ -297,9 +297,9 @@
 +    public void Log(Source source, string message) => Log(LogLevel.Log, source, message);
 +    public void Warning(Source source, string message) => Log(LogLevel.Warning, source, message);
 +
-+    public void Severe(Source source, string message) =>
++    public void Error(Source source, string message) =>
 +        Log(LogLevel.Severe, source, $"{message}");
-+    public void Severe(Source source, string message, Exception exception) =>
++    public void Error(Source source, string message, Exception exception) =>
 +        Log(LogLevel.Severe, source, $"{message}:\n{exception}");
 +
 +    public void Critical(Source source, Exception exception) => Critical(source, null, exception);
