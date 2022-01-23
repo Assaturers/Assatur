@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Magicka.Extensions;
+using Magicka.Logging;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using Magicka.Logging;
 
 namespace Magicka.ModLoader;
 
-public class ModLoader
+public partial class ModLoader
 {
     private const Logger.Source LoggerSource = Logger.Source.ModLoader;
 
@@ -36,7 +35,7 @@ public class ModLoader
 
         foreach (var assembly in assemblies)
         {
-            var modTypes = GetModTypes(assembly);
+            var modTypes = assembly.DefinedTypes.ConcreteSubclasses<Mod>();
 
             if (modTypes.Count == 0)
                 _logger.Warning(LoggerSource, $"Could not find any class of type {nameof(Mod)} in assembly {Path.GetFileName(assembly.Location)}");
@@ -47,29 +46,29 @@ public class ModLoader
                 else
                 {
                     var modType = modTypes[0];
-                    var mod = CreateMod(modType);
 
-                    mod.Logger = Logger.GetLogger(mod.GetType());
+                    try
+                    {
+                        var mod = CreateMod(modType);
+                        
+                        mod.Logger = Logger.GetLogger(mod.GetType());
+                        mod.Assembly = assembly;
 
-                    mods.Add(mod);
-                    mod.LoadContent();
+                        mods.Add(mod);
+                        mod.LoadContent();
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.Error(LoggerSource, $"Error while initializing mod {modType.GetType().Name}.", e);
+                    }
                 }
             }
         }
 
         for (int i = 0; i < mods.Count; i++)
             mods[i].PostLoadContent();
-    }
 
-    private List<Type> GetModTypes(Assembly assembly)
-    {
-        List<Type> types = new();
-
-        foreach (var type in assembly.DefinedTypes)
-            if (type.IsSubclassOf(typeof(Mod)))
-                types.Add(type);
-
-        return types;
+        Mods = mods.AsReadOnly();
     }
 
     private Mod CreateMod(Type type)
@@ -78,60 +77,9 @@ public class ModLoader
         return (Mod)Activator.CreateInstance(type, true);
     }
 
+    public void Do(Action<Mod> action) => Mods.Do(action);
+
+    // private void CreateGlobals<>
+
     public IReadOnlyList<Mod> Mods { get; private set; }
-
-    public class AssembliesProvider
-    {
-        private const string ModsFolder = "Mods";
-
-        public AssembliesProvider(MLRootProvider root)
-        {
-            Directory = new(Path.Combine(root.Directory.FullName, ModsFolder));
-        }
-
-        public List<Assembly> FindAssemblies()
-        {
-            Directory.Create();
-            List<Assembly> assemblies = new();
-
-            foreach (var file in Directory.EnumerateFiles("*.dll", SearchOption.AllDirectories))
-            {
-                try
-                {
-                    var assembly = GetAssembly(file);
-                    assemblies.Add(assembly);
-                }
-                catch
-                {
-                    ;
-                }
-            }
-
-            return assemblies;
-        }
-
-        public Assembly GetAssembly(FileInfo file)
-        {
-            return Assembly.LoadFile(file.FullName);
-        }
-
-        public DirectoryInfo Directory { get; }
-    }
-
-    public class MLRootProvider
-    {
-        private const string Linux = "HOME";
-        private const string Windows = "USERPROFILE";
-        private const string AssaturFolder = "Assatur";
-
-        public MLRootProvider()
-        {
-            // TODO If we ever manage to make this work on Linux, definitively want to add support for it.
-
-            Directory = System.IO.Directory.CreateDirectory(
-                @$"{Environment.GetEnvironmentVariable(Windows)}\Documents\My Games\Magicka\{AssaturFolder}");
-        }
-
-        public DirectoryInfo Directory { get; }
-    }
 }

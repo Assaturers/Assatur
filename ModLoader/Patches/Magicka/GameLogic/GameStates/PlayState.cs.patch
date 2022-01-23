@@ -1,8 +1,19 @@
-@@ -2986,1 +2986,2 @@
+@@ -14,0 +14,1 @@
++using Magicka.Extensions;
+@@ -55,1 +56,1 @@
+-	public class PlayState : GameState, IDisposable
++	public partial class PlayState : GameState, IDisposable
+@@ -1117,0 +1118,3 @@
++			if (globals.TrueForAll(s => !s.PreSetDiedInLevel(this)))
++                return;
++
+@@ -1118,0 +1122,1 @@
++			globals.Do(s => s.PostSetDiedInLevel(this));
+@@ -2986,1 +2991,2 @@
 -								Logger.LogOrAssert(!mEntityManager.Contains(oEntity), $"EntityManager already contains an entity with handle {oEntity.Handle}");
 +								Game.Instance.Logger.Assert(!mEntityManager.Contains(oEntity), Logger.Source.PlayState, $"EntityManager already contains an entity with handle {oEntity.Handle}");
 +
-@@ -3098,1 +3099,2 @@
+@@ -3098,1 +3104,2 @@
 -			Logger.LogOrAssert(mUnarmedWeapon != null, "Unarmed Weapon need to be loaded at this point.");
 +            Game.Instance.Logger.Assert(mUnarmedWeapon != null, LOGGER_SOURCE, "Unarmed Weapon need to be loaded at this point.");
 +

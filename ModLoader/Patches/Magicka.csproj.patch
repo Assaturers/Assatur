@@ -27,4 +27,4 @@
 +    </Reference>
 +  </ItemGroup>
 +  <ItemGroup>
-+    <Folder Include="Magicka\ModLoader\" />
++    <Folder Include="Magicka\ModLoader\Globals\" />
