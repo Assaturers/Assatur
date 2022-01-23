@@ -28,4 +28,4 @@
 +
 +		internal Logger Logger { get; }
 +
-+		internal ModLoader.ModLoader ModLoader { get; }
++		public ModLoader.ModLoader ModLoader { get; }
