@@ -1,0 +1,16 @@
+@@ -129,3 +129,2 @@
+-			{
+-				return;
+-			}
++			    return;
++			
+@@ -136,2 +135,2 @@
+-					Entity entity = mEntities[i];
++					var entity = mEntities[i];
+-					entity.Update(iDataChannel, iDeltaTime);
++                    entity.Update(iDataChannel, iDeltaTime);
+@@ -542,1 +541,3 @@
+-	}
++
++        public Game Game => Game.Instance;
++    }
