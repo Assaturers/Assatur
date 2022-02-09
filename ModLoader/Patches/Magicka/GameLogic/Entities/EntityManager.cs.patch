@@ -4,12 +4,14 @@
 -			}
 +			    return;
 +			
-@@ -136,2 +135,2 @@
+@@ -136,2 +135,4 @@
 -					Entity entity = mEntities[i];
-+					var entity = mEntities[i];
 -					entity.Update(iDataChannel, iDeltaTime);
++					var entity = mEntities[i];
++
++					
 +                    entity.Update(iDataChannel, iDeltaTime);
-@@ -542,1 +541,3 @@
+@@ -542,1 +543,3 @@
 -	}
 +
 +        public Game Game => Game.Instance;
