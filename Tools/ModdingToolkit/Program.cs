@@ -19,13 +19,13 @@ namespace ModdingToolkit
 
         private static Task Main(string[] args)
         {
-            var services = new ServiceProvider(true);
+            var services = new ServiceCollection(true);
             services.AddSingleton<Program>();
 
             return services.GetService<Program>().MainAsync(args);
         }
 
-        public Program(ServiceProvider services)
+        public Program(IServiceProvider services)
         {
             Services = services;
         }
@@ -113,7 +113,7 @@ namespace ModdingToolkit
 #endif
         }
 
-        public ServiceProvider Services { get; }
+        public IServiceProvider Services { get; }
         [Service] public TextsProvider TextsProvider { get; set; }
     }
 }

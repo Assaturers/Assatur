@@ -7,10 +7,10 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
     [Service]
     public class ModderCommandLoader : PrototypeLoader<ModderCommand>
     {
-        private readonly ServiceProvider _services;
+        private readonly IServiceProvider _services;
 
 
-        public ModderCommandLoader(ServiceProvider services)
+        public ModderCommandLoader(IServiceProvider services)
         {
             _services = services;
             Initialize();
