@@ -1,10 +1,14 @@
 This repository contains the tools and patches used to mod Magicka.
 
+You need to install [NET Framework 4.5.2 Developer Pack](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net452-developer-pack-offline-installer) for Magicka and [.NET6 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) for the ModdingToolkit. This is done in order to allow Linux and MAC users to use the Modding toolkit natively.
+For .NET6, you most likely fall under one of these categories:
+- [Windows (x64)](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.2-windows-x64-installer)
+- [Linux](https://docs.microsoft.com/en-ca/dotnet/core/install/linux?WT.mc_id=dotnet-35129-website)
+- [Mac](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.2-macos-x64-installer)
+
 ## Contributing
 
 **THIS GUIDE DETAILS THE STEPS THAT WILL BE REQUIRED TO CONTRIBUTE. THE TOOLKIT IS NOT YET COMPLETE.**
-
-You need to install [NET Framework 4.5.2 Developer Pack](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net452-developer-pack-offline-installer)
 
 To contribute to the modloader, follow these steps:
 - Fork this repository and clone it onto your computer into the Magicka installation folder under `Assatur`;
