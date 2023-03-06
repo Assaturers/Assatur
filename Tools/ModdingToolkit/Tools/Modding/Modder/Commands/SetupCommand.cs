@@ -18,13 +18,16 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
         private readonly IDecompiler _decompiler;
         private readonly IPatcher _patcher;
         private readonly TextsProvider _texts;
+        private readonly SymlinkHelper _symlink;
 
-        public SetupCommand(ILocationStore loc, IDecompiler decompiler, IPatcher patcher, TextsProvider texts)
+        public SetupCommand(ILocationStore loc, IDecompiler decompiler, IPatcher patcher, TextsProvider texts, SymlinkHelper symlink)
         {
             _loc = loc;
             _decompiler = decompiler;
             _patcher = patcher;
+
             _texts = texts;
+            _symlink = symlink;
         }
 
         public override async Task Execute()
@@ -64,35 +67,58 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
             {
                 Console.Write($"Copying {s}... ");
 
-                try
+                if (s.StartsWith(':'))
                 {
-                    if (s.EndsWith('/'))
-                    {
-                        DirectoryInfo
-                            from = _loc.MagickaConfig.Directory.Combine(s),
-                            to = debugTarget.Combine(s);
+                    s = s.TrimStart(':');
+                    s = s.TrimEnd('\\');
 
-                        from.CopyTo(to, true);
-                    }
-                    else
+                    try
                     {
-                        string
-                            from = Path.Combine(_loc.MagickaConfig.DirectoryName, s),
-                            to = Path.Combine(debugTarget.FullName, s);
-
-                        File.Copy(from, to);
+                        _symlink.MakeSymlink(Path.Combine(_loc.MagickaConfig.DirectoryName, s),
+                            debugTarget.CombineString(s));
                     }
-                    Console.WriteLine("Done.");
+                    catch (Exception)
+                    {
+                        Console.Error.WriteLine("Failed creating symlink! The ModLoader will not launch.");
+                    }
                 }
-                catch
+                else
                 {
-                    ConsoleHelper.WriteLineError("Failed!");
+                    Copy(s, debugTarget);
                 }
             });
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 Process.Start("explorer.exe", $"\"{_loc.DecompAssatur}\"");
+            }
+        }
+
+        private void Copy(string s, DirectoryInfo debugTarget)
+        {
+            try
+            {
+                if (s.EndsWith('/'))
+                {
+                    DirectoryInfo
+                        from = _loc.MagickaConfig.Directory.Combine(s),
+                        to = debugTarget.Combine(s);
+
+                    from.CopyTo(to, true);
+                }
+                else
+                {
+                    string
+                        from = Path.Combine(_loc.MagickaConfig.DirectoryName, s),
+                        to = Path.Combine(debugTarget.FullName, s);
+
+                    File.Copy(from, to);
+                }
+                Console.WriteLine("Done.");
+            }
+            catch
+            {
+                ConsoleHelper.WriteLineError("Failed!");
             }
         }
 

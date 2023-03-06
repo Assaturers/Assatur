@@ -2,5 +2,5 @@
 steam_appid.txt
 pops_api.dll
 pops_api.lib
-Content/
-Cursors/
+:Content\
+:Cursors\
