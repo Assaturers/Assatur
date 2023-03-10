@@ -1,11 +1,9 @@
-﻿using Magicka.GameLogic.GameStates;
-
-namespace Magicka.ModLoader.Globals;
+﻿namespace Magicka.ModLoader.Globals;
 
 public class PlayStateGlobal : IPlayStateGlobal
 {
-    public bool PreSetDiedInLevel(PlayState state) => true;
-    public void PostSetDiedInLevel(PlayState state) { }
+    public bool PreSetDiedInLevel() => true;
+    public void PostSetDiedInLevel() { }
 
     public virtual bool InstancePer { get; }
 }

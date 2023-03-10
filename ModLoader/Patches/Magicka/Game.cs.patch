@@ -1,23 +1,14 @@
-@@ -23,0 +23,2 @@
+@@ -23,0 +23,1 @@
 +using Magicka.Logging;
-+using Magicka.Logging;
-@@ -260,0 +262,5 @@
+@@ -261,0 +262,5 @@
 +			Logger = Logger.GetLogger<Game>();
 +			Logger.Log(Logger.Source.Global, "Initializing Game.");
 +
 +            ModLoader = new();
 +
-@@ -261,0 +268,5 @@
-+			Logger = Logger.GetLogger<Game>();
-+			Logger.Log(Logger.Source.Global, "Initializing Game.");
+@@ -357,0 +363,1 @@
 +
-+            ModLoader = new();
-+
-@@ -352,0 +364,1 @@
-+
-@@ -357,0 +370,1 @@
-+
-@@ -358,1 +372,7 @@
+@@ -358,1 +365,7 @@
 -			string currentGameLanguage = SteamApps.GetCurrentGameLanguage();
 +
 +            if (string.IsNullOrWhiteSpace(steamGameLanguage))
@@ -26,22 +17,14 @@
 +            string currentGameLanguage = steamGameLanguage;
 +            // TODO Add this back: string currentGameLanguage = SteamApps.GetCurrentGameLanguage();
 +
-@@ -364,1 +384,2 @@
+@@ -364,1 +377,2 @@
 +			
 -			LanguageManager.Instance.SetLanguage(GlobalSettings.Instance.Language);
 +            LanguageManager.Instance.SetLanguage(GlobalSettings.Instance.Language);
-@@ -421,0 +442,2 @@
+@@ -435,0 +449,2 @@
 +
 +			ModLoader.LoadContent();
-@@ -435,0 +458,2 @@
-+
-+			ModLoader.LoadContent();
-@@ -733,0 +758,4 @@
-+
-+		internal Logger Logger { get; }
-+
-+		public ModLoader.ModLoader ModLoader { get; }
-@@ -749,0 +778,4 @@
+@@ -749,0 +765,4 @@
 +
 +		internal Logger Logger { get; }
 +

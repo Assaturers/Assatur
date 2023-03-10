@@ -1,12 +1,11 @@
-@@ -1,0 +1,2 @@
+@@ -1,0 +1,1 @@
 +using System;
-+using System;
-@@ -4,1 +6,3 @@
+@@ -4,1 +5,3 @@
 -namespace Magicka.Logging
 +namespace Magicka.Logging;
 +
 +public class Logger
-@@ -6,279 +10,161 @@
+@@ -6,279 +9,161 @@
 -	public static class Logger
 -	{
 -		public enum Source

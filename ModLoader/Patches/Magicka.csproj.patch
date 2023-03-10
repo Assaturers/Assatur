@@ -1,7 +1,7 @@
 @@ -7,1 +7,1 @@
 -    <TargetFramework>net35</TargetFramework>
 +    <TargetFramework>net452</TargetFramework>
-@@ -18,0 +18,14 @@
+@@ -18,0 +18,7 @@
 +  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 +    <DefineConstants>TRACE</DefineConstants>
 +    <LangVersion>latest</LangVersion>
@@ -9,33 +9,13 @@
 +  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 +    <LangVersion>latest</LangVersion>
 +  </PropertyGroup>
-+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-+    <DefineConstants>TRACE</DefineConstants>
-+    <LangVersion>latest</LangVersion>
-+  </PropertyGroup>
-+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-+    <LangVersion>latest</LangVersion>
-+  </PropertyGroup>
-@@ -23,1 +37,0 @@
+@@ -23,1 +30,0 @@
 -    <Reference Include="Microsoft.Xna.Framework" />
-@@ -36,1 +49,0 @@
+@@ -36,1 +42,0 @@
 -    <Reference Include="Microsoft.Xna.Framework.Game" />
-@@ -41,1 +53,0 @@
+@@ -41,1 +46,0 @@
 -    <Reference Include="Microsoft.DirectX.DirectInput" />
-@@ -50,0 +61,12 @@
-+	<Reference Include="Microsoft.Xna.Framework">
-+      <HintPath>C:\WINDOWS\assembly\GAC_32\Microsoft.Xna.Framework\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.dll</HintPath>
-+    </Reference>
-+	<Reference Include="Microsoft.Xna.Framework.Game">
-+      <HintPath>C:\WINDOWS\assembly\GAC_32\Microsoft.Xna.Framework.Game\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Game.dll</HintPath>
-+    </Reference>
-+	<Reference Include="Microsoft.DirectX.DirectInput">
-+      <HintPath>C:\WINDOWS\assembly\GAC\Microsoft.DirectX.DirectInput\1.0.2902.0__31bf3856ad364e35\Microsoft.DirectX.DirectInput.dll</HintPath>
-+    </Reference>
-+  </ItemGroup>
-+  <ItemGroup>
-+    <Folder Include="Magicka\ModLoader\Globals\" />
-@@ -54,0 +77,12 @@
+@@ -54,0 +58,12 @@
 +	<Reference Include="Microsoft.Xna.Framework">
 +      <HintPath>C:\WINDOWS\assembly\GAC_32\Microsoft.Xna.Framework\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.dll</HintPath>
 +    </Reference>
