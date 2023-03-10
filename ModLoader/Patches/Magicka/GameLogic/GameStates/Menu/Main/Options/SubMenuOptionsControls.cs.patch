@@ -1,5 +1,8 @@
-@@ -80,0 +80,2 @@
+@@ -80,0 +80,5 @@
 +
 +#if GAMEPADS || !DEBUG
-@@ -81,0 +83,1 @@
++
++#endif
++#if GAMEPADS || !DEBUG
+@@ -81,0 +86,1 @@
 +#endif
