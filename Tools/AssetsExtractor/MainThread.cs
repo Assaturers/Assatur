@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System;
+using System.IO;
+using System.Threading;
 using Microsoft.Xna.Framework;
 
 namespace ModdingToolkit.AssetsExtractor
@@ -19,6 +21,7 @@ namespace ModdingToolkit.AssetsExtractor
                 Game = new Main();
                 Game.Run();
             });
+
             _thread.Start();
         }
 

@@ -29,7 +29,7 @@ namespace ModdingToolkit.AssetsExtractor
             var game = new MainThread();
             game.Start();
 
-            while (!game.IsAlive)
+            while (game.Game == null)
                 Thread.Sleep(500);
 
             game.Game.Content.RootDirectory = contentDir.FullName;
