@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Magicka.Extensions;
 
@@ -19,6 +20,8 @@ public static class AssembliesExtension
 
         return t;
     }
+
+    public static bool HasAttribute<T>(this MemberInfo member) where T : Attribute => member.GetCustomAttribute<T>() != null;
 
     private static bool IsSubclassOf<T>(Type type) => type.IsSubclassOf(typeof(T));
 

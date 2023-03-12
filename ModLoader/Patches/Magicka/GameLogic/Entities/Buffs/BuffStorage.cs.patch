@@ -1,0 +1,12 @@
+@@ -49,1 +49,1 @@
+-		public BuffReduceAgro BuffReduceAgro;
++		public BuffReduceAgro BuffReduceAggro;
+@@ -90,1 +90,1 @@
+-				BuffReduceAgro = new BuffReduceAgro(iInput);
++				BuffReduceAggro = new BuffReduceAgro(iInput);
+@@ -201,1 +201,1 @@
+-			BuffReduceAgro = iBuff;
++			BuffReduceAggro = iBuff;
+@@ -275,1 +275,1 @@
+-				BuffReduceAgro.Execute(iOwner);
++				BuffReduceAggro.Execute(iOwner);

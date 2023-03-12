@@ -5,20 +5,40 @@
 @@ -55,1 +57,1 @@
 -	public class PlayState : GameState, IDisposable
 +	public partial class PlayState : GameState, IDisposable
-@@ -1113,1 +1115,1 @@
+@@ -1097,0 +1099,1 @@
++			
+@@ -1099,1 +1102,1 @@
+-				bool flag2 = false;
++				bool kbmousePlayer = false;
+@@ -1101,0 +1104,1 @@
++
+@@ -1103,1 +1107,1 @@
+-					if (players[j].Playing && !(players[j].Gamer is NetworkGamer))
++					if (players[j].Playing && players[j].Gamer is not NetworkGamer)
+@@ -1105,1 +1109,1 @@
+-						flag2 = !(players[j].Controller is KeyboardMouseController);
++						kbmousePlayer = players[j].Controller is not KeyboardMouseController;
+@@ -1109,1 +1113,1 @@
+-				text = ((!flag2) ? text.Replace("#KEY_BOOST;", '\u032a'.ToString()) : text.Replace("#KEY_BOOST;", '\u0325'.ToString()));
++				text = (!kbmousePlayer) ? text.Replace("#KEY_BOOST;", '\u032a'.ToString()) : text.Replace("#KEY_BOOST;", '\u0325'.ToString());
+@@ -1111,0 +1115,1 @@
++
+@@ -1113,1 +1118,3 @@
 -		}
++
++			globals = Game.Instance.ModLoader.PlayStateGlobalFactory.Make(this).ToArray();
 +        }
-@@ -1117,0 +1119,3 @@
-+			if (!globals.TrueForAll(s => !s.PreSetDiedInLevel(this)))
+@@ -1117,0 +1124,3 @@
++			if (!globals.TrueForAll(s => s.PreSetDiedInLevel(this)))
 +                return;
 +
-@@ -1118,0 +1123,1 @@
+@@ -1118,0 +1128,1 @@
 +			globals.Do(s => s.PostSetDiedInLevel(this));
-@@ -2986,1 +2992,2 @@
+@@ -2986,1 +2997,2 @@
 -								Logger.LogOrAssert(!mEntityManager.Contains(oEntity), $"EntityManager already contains an entity with handle {oEntity.Handle}");
 +								Game.Instance.Logger.Assert(!mEntityManager.Contains(oEntity), Logger.Source.PlayState, $"EntityManager already contains an entity with handle {oEntity.Handle}");
 +
-@@ -3098,1 +3105,2 @@
+@@ -3098,1 +3110,2 @@
 -			Logger.LogOrAssert(mUnarmedWeapon != null, "Unarmed Weapon need to be loaded at this point.");
 +            Game.Instance.Logger.Assert(mUnarmedWeapon != null, LOGGER_SOURCE, "Unarmed Weapon need to be loaded at this point.");
 +

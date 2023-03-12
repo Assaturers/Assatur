@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 using Magicka.Logging;
-using Magicka.ModLoader.Globals;
 
 namespace Magicka.ModLoader;
 

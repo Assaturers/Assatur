@@ -5,5 +5,5 @@ namespace Magicka.GameLogic.GameStates;
 
 public partial class PlayState
 {
-    private readonly IPlayStateGlobal[] globals;
+    private readonly IList<PlayStateGlobal> globals;
 }

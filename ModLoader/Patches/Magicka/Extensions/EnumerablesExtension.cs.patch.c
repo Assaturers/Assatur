@@ -5,9 +5,9 @@ namespace Magicka.Extensions;
 
 public static class EnumerablesExtension
 {
-    public static bool TrueForAll<T>(this T[] source, Predicate<T> predicate)
+    public static bool TrueForAll<T>(this IList<T> source, Predicate<T> predicate)
     {
-        for (int i = 0; i < source.Length; i++)
+        for (int i = 0; i < source.Count; i++)
             if (!predicate(source[i]))
                 return false;
 
@@ -24,5 +24,16 @@ public static class EnumerablesExtension
     {
         foreach (var item in source)
             action(item);
+    }
+
+    public static List<T> Flatten<T>(this IEnumerable<IEnumerable<T>> source)
+    {
+        var flattened = new List<T>();
+
+        foreach (var source2 in source)
+            foreach (var item in source2)
+                flattened.Add(item);
+
+        return flattened;
     }
 }

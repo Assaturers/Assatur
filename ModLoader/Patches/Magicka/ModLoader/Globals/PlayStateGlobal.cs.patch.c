@@ -2,10 +2,8 @@
 
 namespace Magicka.ModLoader.Globals;
 
-public class PlayStateGlobal : IPlayStateGlobal
+public class PlayStateGlobal : Global
 {
-    public bool PreSetDiedInLevel(PlayState state) => true;
-    public void PostSetDiedInLevel(PlayState state) { }
-
-    public virtual bool InstancePer { get; }
+    public virtual bool PreSetDiedInLevel(PlayState state) => true;
+    public virtual void PostSetDiedInLevel(PlayState state) { }
 }

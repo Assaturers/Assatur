@@ -69,6 +69,8 @@ public partial class ModLoader
             mods[i].PostLoadContent();
 
         Mods = mods.AsReadOnly();
+
+        InitializeFactories();
     }
 
     private Mod CreateMod(Type type)

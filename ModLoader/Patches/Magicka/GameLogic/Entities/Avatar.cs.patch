@@ -1,5 +1,22 @@
-@@ -692,1 +692,3 @@
+@@ -10,0 +10,1 @@
++using Magicka.Extensions;
+@@ -39,1 +40,1 @@
+-	public class Avatar : Character, IAI
++	public partial class Avatar : Character, IAI
+@@ -692,1 +693,3 @@
 -				Logger.LogOrAssert(result != null, "Unable to find a valid player avatar.");
 +
 +				// TODO Check if this can be removed because I think we can optimize away the IF.
 +				Game.Instance.Logger.Assert(result != null, Logger.Source.Avatar, "Unable to find a valid player avatar.");
+@@ -771,0 +774,2 @@
++
++			_globals = Game.Instance.ModLoader.AvatarGlobalFactory.Make(this);
+@@ -2004,0 +2009,3 @@
++			if (!_globals.TrueForAll(g => g.PreDie(this)))
++				return;
++
+@@ -2005,0 +2013,1 @@
++
+@@ -2037,0 +2046,2 @@
++
++			_globals.Do(g => g.PostDie(this));
