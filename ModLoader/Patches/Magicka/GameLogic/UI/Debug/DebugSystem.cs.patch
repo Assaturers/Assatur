@@ -1,0 +1,8 @@
+@@ -52,1 +52,3 @@
++        private readonly Logger _logger = Logger.GetLogger<DebugMenuBase>();
++
+-		public bool Active
++        public bool Active
+@@ -156,1 +158,1 @@
+-			Logger.LogOrAssert(!mMenus.ContainsKey(iMenu.Id), "Duplicate ID menu found " + iMenu.Id);
++			_logger.Assert(mMenus.ContainsKey(iMenu.Id), Logger.Source.DebugSystem, "Duplicate ID menu found " + iMenu.Id);

@@ -1,6 +1,6 @@
 ﻿namespace Magicka.ModLoader.Globals;
 
-public class CharacterGlobal
+public class CharacterGlobal : Global
 {
     public virtual bool PreGetSpellRangeModifier(ref float range) => true;
     public virtual void GetSpellRangeModifier(ref float range) { }

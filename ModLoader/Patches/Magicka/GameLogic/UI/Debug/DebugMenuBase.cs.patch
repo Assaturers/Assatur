@@ -1,0 +1,9 @@
+@@ -311,0 +311,2 @@
++		private readonly Logger _logger = Logger.GetLogger<DebugMenuBase>();
++
+@@ -373,1 +375,1 @@
+-						Logger.LogOrAssert(iConditionMet: false, $"Unknown param type in menu {text}");
++						_logger.Error(Logger.Source.DebugSystem, $"Unknown param type in menu {text}");
+@@ -506,1 +508,1 @@
+-			Logger.LogOrAssert(jSONNode != null, $"Parameter {iParam} not found in menu.");
++			_logger.Assert(jSONNode == null, Logger.Source.DebugSystem, $"Parameter {iParam} not found in menu.");

@@ -27,5 +27,6 @@ public partial class ModLoader
 
     [Factory] public GlobalFactory<PlayState, PlayStateGlobal> PlayStateGlobalFactory { get; private set; }
     [Factory] public GlobalFactory<Avatar, AvatarGlobal> AvatarGlobalFactory { get; private set; }
+    [Factory] public GlobalFactory<Character, CharacterGlobal> CharacterGlobalFactory { get; private set; }
     [Factory] public GlobalFactory<Spell, SpellGlobal> SpellGlobalFactory { get; private set; }
 }
