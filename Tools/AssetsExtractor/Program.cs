@@ -56,9 +56,6 @@ namespace ModdingToolkit.AssetsExtractor
             }
 
             game.Stop();
-            
-            Console.Write("Press any key to exit...");
-            Console.ReadKey();
         }
     }
 }

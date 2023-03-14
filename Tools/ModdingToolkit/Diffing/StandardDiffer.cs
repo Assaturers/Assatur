@@ -16,8 +16,8 @@ namespace ModdingToolkit.Diffing
     {
         public const string
             PatchExtension = ".patch",
-            DeleteExtension = ".d",
-            CreateExtension = ".c";
+            DeleteExtension = ".delete",
+            CreateExtension = ".create";
 
         public Task DiffFolders(DirectoryInfo origin, DirectoryInfo updated, DirectoryInfo patches)
         {
@@ -37,12 +37,12 @@ namespace ModdingToolkit.Diffing
 
             patches.Recreate(true);
 
-            List<Thread> threads = new(3);
+            var tasks = new List<Task>(3);
 
             if (toDiff.Count > 0)
             {
-                threads.Add(
-                    new Thread(async () =>
+                tasks.Add(
+                    Task.Run(async () =>
                 {
 
                     var differ = new LineMatchedDiffer();
@@ -52,22 +52,19 @@ namespace ModdingToolkit.Diffing
 
             if (toCreate.Count > 0)
             {
-                threads.Add(
-                    new Thread(async () =>
+                tasks.Add(
+                    Task.Run(async () =>
                         await toCreate.DoAsync(p => WriteCreatePatch(updated.FullName, patches.FullName, p))));
             }
 
             if (toDelete.Count > 0)
             {
-                threads.Add(
-                    new Thread(async () =>
+                tasks.Add(
+                    Task.Run(async () =>
                         await toDelete.DoAsync(p => WriteDeletePatch(patches.FullName, p))));
             }
 
-            threads.Do(t => t.Start());
-            threads.Do(t => t.Join());
-
-            return Task.CompletedTask;
+            return Task.WhenAll(tasks);
         }
 
         private List<string> SelectFilter(string[] collection, DirectoryInfo root)

@@ -58,7 +58,7 @@ namespace ModdingToolkit.Magicka.Installing
             Console.WriteLine("Done.");
 
             Console.Write("Applying patches... ");
-            await _patcher.Patch(sourceDir.GetDirectories()[0].Combine(@"\ModLoader", Constants.PatchesFolder), decompileDir);
+            _patcher.Patch(sourceDir.GetDirectories()[0].Combine(@"\ModLoader", Constants.PatchesFolder), decompileDir);
             Console.WriteLine("Done.");
 
             Console.Write("Validating build... ");

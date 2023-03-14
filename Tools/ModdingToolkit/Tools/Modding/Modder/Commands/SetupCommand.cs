@@ -52,7 +52,7 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
             Console.WriteLine("Done.");
 
             Console.WriteLine("Applying patches to Assatur... ");
-            await StandardPatcher.StandardPatch(_patcher, _loc);
+            StandardPatcher.StandardPatch(_patcher, _loc);
 
             DirectoryInfo debugTarget = _loc.DecompAssatur
                     .CreateSubdirectory("bin")

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using DiffPatch;
 using ModdingToolkit.Diffing;
@@ -13,17 +14,17 @@ namespace ModdingToolkit.Patching
     [Service]
     public class StandardPatcher : IPatcher
     {
-        public async Task Patch(DirectoryInfo patches, DirectoryInfo destination)
+        public void Patch(DirectoryInfo patches, DirectoryInfo destination)
         {
             var files = patches.GetFiles("*.patch*", SearchOption.AllDirectories);
 
             if (files.Length == 0)
                 return;
 
-            List<Task> tasks = new(files.Length);
-            files.Do(f => tasks.Add(Patch(destination, patches, f)));
+            var tasks = new List<Task>();
+            files.Do(f => tasks.Add(Task.Run(async () => await Patch(destination, patches, f))));
 
-            await Task.WhenAll(tasks);
+            Task.WaitAll(tasks.ToArray());
         }
 
         public static async Task Patch(DirectoryInfo destination, DirectoryInfo patches, FileInfo patch)
@@ -69,10 +70,9 @@ namespace ModdingToolkit.Patching
             }
         }
 
-
-        public static async Task StandardPatch(IPatcher patcher, ILocationStore loc)
+        public static void StandardPatch(IPatcher patcher, ILocationStore loc)
         {
-            await patcher.Patch(loc.Patches, loc.DecompAssatur);
+            patcher.Patch(loc.Patches, loc.DecompAssatur);
         }
     }
 }

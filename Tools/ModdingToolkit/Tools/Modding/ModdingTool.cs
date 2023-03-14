@@ -28,7 +28,7 @@ namespace ModdingToolkit.Tools.Modding
 
                 if (running)
                 {
-                    await command.Execute();
+                    command.Execute().Wait();
                 }
             }
         }

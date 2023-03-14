@@ -5,6 +5,6 @@ namespace ModdingToolkit.Patching
 {
     public interface IPatcher
     {
-        Task Patch(DirectoryInfo patches, DirectoryInfo destination);
+        void Patch(DirectoryInfo patches, DirectoryInfo destination);
     }
 }
