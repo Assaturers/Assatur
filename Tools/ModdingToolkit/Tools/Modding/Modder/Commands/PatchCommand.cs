@@ -16,10 +16,10 @@ namespace ModdingToolkit.Tools.Modding.Modder.Commands
             _patcher = patcher;
         }
 
-        public override async Task Execute()
+        public override Task Execute()
         {
             Console.WriteLine("Applying patches to Assatur... ");
-            StandardPatcher.StandardPatch(_patcher, _loc);
+            return StandardPatcher.StandardPatch(_patcher, _loc);
         }
 
         public override string Name { get; } = "Apply Patches";

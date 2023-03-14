@@ -1,10 +1,9 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace ModdingToolkit.Patching
+namespace ModdingToolkit.Patching;
+
+public interface IPatcher
 {
-    public interface IPatcher
-    {
-        void Patch(DirectoryInfo patches, DirectoryInfo destination);
-    }
+    Task Patch(DirectoryInfo patches, DirectoryInfo destination);
 }

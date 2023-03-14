@@ -14,17 +14,17 @@ namespace ModdingToolkit.Patching
     [Service]
     public class StandardPatcher : IPatcher
     {
-        public void Patch(DirectoryInfo patches, DirectoryInfo destination)
+        public Task Patch(DirectoryInfo patches, DirectoryInfo destination)
         {
             var files = patches.GetFiles("*.patch*", SearchOption.AllDirectories);
 
             if (files.Length == 0)
-                return;
+                return Task.CompletedTask;
 
             var tasks = new List<Task>();
             files.Do(f => tasks.Add(Task.Run(async () => await Patch(destination, patches, f))));
 
-            Task.WaitAll(tasks.ToArray());
+            return Task.WhenAll(tasks.ToArray());
         }
 
         public static async Task Patch(DirectoryInfo destination, DirectoryInfo patches, FileInfo patch)
@@ -70,9 +70,9 @@ namespace ModdingToolkit.Patching
             }
         }
 
-        public static void StandardPatch(IPatcher patcher, ILocationStore loc)
+        public static Task StandardPatch(IPatcher patcher, ILocationStore loc)
         {
-            patcher.Patch(loc.Patches, loc.DecompAssatur);
+            return patcher.Patch(loc.Patches, loc.DecompAssatur);
         }
     }
 }

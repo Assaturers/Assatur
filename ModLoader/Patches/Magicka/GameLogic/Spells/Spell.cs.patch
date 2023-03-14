@@ -6,12 +6,5 @@
 @@ -125,1 +126,1 @@
 -		public static int ElementIndex(Elements iElement)
 +        public static int ElementIndex(Elements iElement)
-@@ -399,0 +400,4 @@
+@@ -399,0 +400,1 @@
 +
-+			for (int i = 0; i < _globals.Count; i++)
-+				if (!_globals[i].PreCalculateDamage(this, ref iSpellType, ref iCastType, ref oDamages)) return;
-+
-@@ -828,0 +833,3 @@
-+
-+			var local = this;
-+			_globals.Do(g => g.CalculateDamage(local, iSpellType, iCastType, oDamages));

@@ -23,7 +23,7 @@ public class EMGlobalAvatar : AvatarGlobal
     {
         if (_extraLives > 0)
         {
-            avatar.HasFairy = true;
+            //avatar.HasFairy = true;
 
             _extraLives--;
         }
